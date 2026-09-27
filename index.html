@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visionarios de la IA — Fundadores de Startups y el Futuro</title>
+  <title>Noticias IA &amp; Startups — Silicon Valley, YCombinator, Twitter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
       --bg-primary: #0a0a0f;
       --bg-secondary: #12121a;
       --bg-card: #1a1a2e;
+      --bg-card-alt: #16162a;
       --text-primary: #f0f0f5;
       --text-secondary: #a0a0b8;
       --text-muted: #6a6a80;
@@ -21,6 +22,8 @@
       --accent-4: #fdcb6e;
       --accent-5: #55efc4;
       --accent-6: #74b9ff;
+      --accent-7: #e17055;
+      --accent-8: #a29bfe;
       --gradient-1: linear-gradient(135deg, #6c5ce7, #a29bfe);
       --gradient-2: linear-gradient(135deg, #00cec9, #55efc4);
       --gradient-3: linear-gradient(135deg, #fd79a8, #e17055);
@@ -50,24 +53,28 @@
     /* Hero */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem 1rem;
-      position: relative;
-      overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem 1rem;
+      position: relative; overflow: hidden;
     }
 
     .hero::before {
       content: '';
-      position: absolute;
-      width: 600px; height: 600px;
+      position: absolute; width: 600px; height: 600px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(108,92,231,0.15) 0%, transparent 70%);
       top: -100px; left: 50%; transform: translateX(-50%);
       animation: pulse-glow 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute; width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,206,201,0.1) 0%, transparent 70%);
+      bottom: -50px; right: 10%;
+      animation: pulse-glow 8s ease-in-out infinite reverse;
     }
 
     @keyframes pulse-glow {
@@ -78,23 +85,23 @@
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.5rem 1.25rem; border-radius: 100px;
-      background: rgba(108,92,231,0.1); border: 1px solid rgba(108,92,231,0.3);
-      font-size: 0.85rem; color: var(--accent-1); font-weight: 500;
+      background: rgba(0,206,201,0.1); border: 1px solid rgba(0,206,201,0.3);
+      font-size: 0.85rem; color: var(--accent-2); font-weight: 500;
       margin-bottom: 2rem; position: relative; z-index: 1;
     }
 
     .hero-badge::before {
       content: ''; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent-2); animation: blink 2s ease-in-out infinite;
+      background: var(--accent-5); animation: blink 2s ease-in-out infinite;
     }
 
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
       font-weight: 800; line-height: 1.1;
-      max-width: 900px; position: relative; z-index: 1;
+      max-width: 950px; position: relative; z-index: 1;
     }
 
     .gradient-text {
@@ -110,23 +117,23 @@
 
     .hero p {
       font-size: 1.15rem; color: var(--text-secondary);
-      max-width: 750px; margin-top: 1.5rem; position: relative; z-index: 1;
+      max-width: 800px; margin-top: 1.5rem; position: relative; z-index: 1;
     }
 
     .hero-stats {
-      display: flex; gap: 3rem; margin-top: 3rem;
+      display: flex; gap: 2.5rem; margin-top: 3rem;
       position: relative; z-index: 1; flex-wrap: wrap; justify-content: center;
     }
 
     .hero-stat .number {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem; font-weight: 700;
-      background: var(--gradient-1);
+      font-size: 2.2rem; font-weight: 700;
+      background: var(--gradient-2);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
     .hero-stat .label {
-      font-size: 0.85rem; color: var(--text-muted);
+      font-size: 0.8rem; color: var(--text-muted);
       text-transform: uppercase; letter-spacing: 0.1em;
     }
 
@@ -159,11 +166,11 @@
     .nav-logo {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700; font-size: 1.1rem;
-      color: var(--text-primary); text-decoration: none;
+      color: var(--text-primary); text-decoration: none; white-space: nowrap;
     }
 
     .nav-links {
-      display: flex; gap: 0.25rem;
+      display: flex; gap: 0.15rem;
       overflow-x: auto; scrollbar-width: none;
     }
 
@@ -171,12 +178,16 @@
 
     .nav-links a {
       color: var(--text-secondary); text-decoration: none;
-      font-size: 0.85rem; padding: 0.5rem 0.75rem;
+      font-size: 0.82rem; padding: 0.45rem 0.7rem;
       border-radius: var(--radius-sm); white-space: nowrap; transition: all 0.2s;
     }
 
     .nav-links a:hover {
       color: var(--text-primary); background: rgba(108,92,231,0.1);
+    }
+
+    .nav-links a.active {
+      color: var(--accent-2); background: rgba(0,206,201,0.1);
     }
 
     /* Layout */
@@ -200,113 +211,290 @@
 
     .section-header p { color: var(--text-secondary); font-size: 1.05rem; }
 
-    /* Founder Card */
-    .founder-card {
-      background: var(--bg-card); border: 1px solid var(--border-color);
-      border-radius: var(--radius); margin-bottom: 4rem;
-      overflow: hidden; transition: all 0.3s; box-shadow: var(--card-shadow);
+    /* Ticker bar */
+    .ticker-bar {
+      background: rgba(0,206,201,0.06); border: 1px solid rgba(0,206,201,0.15);
+      border-radius: var(--radius); padding: 1rem 1.5rem; margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem; overflow: hidden;
     }
 
-    .founder-card:hover {
+    .ticker-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent-2);
+      padding: 0.25rem 0.6rem; background: rgba(0,206,201,0.15);
+      border-radius: 4px; white-space: nowrap;
+    }
+
+    .ticker-content {
+      display: flex; gap: 2rem; overflow: hidden; white-space: nowrap;
+      animation: scroll-ticker 40s linear infinite;
+      font-size: 0.88rem; color: var(--text-secondary);
+    }
+
+    @keyframes scroll-ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .ticker-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    /* News cards grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem; margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .news-grid { grid-template-columns: 1fr; }
+    }
+
+    .news-card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: all 0.3s; box-shadow: var(--card-shadow);
+      display: flex; flex-direction: column;
+    }
+
+    .news-card:hover {
       border-color: rgba(108,92,231,0.3); box-shadow: var(--glow);
       transform: translateY(-2px);
     }
 
-    .founder-header {
-      display: flex; align-items: center; gap: 1.5rem;
-      padding: 2rem; border-bottom: 1px solid var(--border-color); flex-wrap: wrap;
+    .news-card .card-source {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 0.2rem 0.6rem;
+      border-radius: 4px; margin-bottom: 0.75rem; width: fit-content;
     }
 
-    .founder-avatar {
-      width: 80px; height: 80px; border-radius: 50%;
+    .news-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+
+    .news-card .card-body {
+      font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;
+      flex: 1;
+    }
+
+    .news-card .card-body strong { color: var(--text-primary); }
+
+    .news-card .card-meta {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-top: 1rem; padding-top: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.78rem; color: var(--text-muted);
+    }
+
+    .news-card .card-tag {
+      padding: 0.15rem 0.5rem; border-radius: 4px;
+      font-size: 0.7rem; font-weight: 600;
+    }
+
+    /* Featured news */
+    .featured-news {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius); padding: 2.5rem;
+      margin-bottom: 2rem; box-shadow: var(--glow);
+      position: relative; overflow: hidden;
+    }
+
+    .featured-news::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-1), var(--accent-3));
+    }
+
+    .featured-news .featured-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent-2);
+      margin-bottom: 1rem;
+    }
+
+    .featured-news h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700;
+      margin-bottom: 1rem; line-height: 1.3;
+    }
+
+    .featured-news .featured-body {
+      font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8;
+    }
+
+    .featured-news .featured-body strong { color: var(--text-primary); }
+
+    .featured-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .featured-stat {
+      text-align: center; padding: 0.75rem;
+      background: rgba(0,206,201,0.05); border-radius: var(--radius-sm);
+    }
+
+    .featured-stat .fs-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--accent-2);
+    }
+
+    .featured-stat .fs-label {
+      font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;
+      letter-spacing: 0.06em; margin-top: 0.15rem;
+    }
+
+    /* Big deals table */
+    .deals-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--bg-card); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 3rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .deals-table th {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-muted);
+      padding: 1rem 1.25rem; text-align: left;
+      background: var(--bg-secondary); border-bottom: 1px solid var(--border-color);
+    }
+
+    .deals-table td {
+      padding: 0.85rem 1.25rem; font-size: 0.88rem;
+      border-bottom: 1px solid rgba(108,92,231,0.08);
+      color: var(--text-secondary);
+    }
+
+    .deals-table tr:last-child td { border-bottom: none; }
+
+    .deals-table tr:hover td { background: rgba(108,92,231,0.03); }
+
+    .deals-table .company-name {
+      font-weight: 600; color: var(--text-primary);
+    }
+
+    .deals-table .amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; color: var(--accent-5);
+    }
+
+    /* How startups work section */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem; margin-bottom: 3rem;
+    }
+
+    .how-card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .how-card:hover {
+      border-color: rgba(108,92,231,0.3); transform: translateY(-2px);
+    }
+
+    .how-card .how-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1rem;
+    }
+
+    .how-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;
+    }
+
+    .how-card p {
+      font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65;
+    }
+
+    .how-card .how-stat {
+      display: inline-block; margin-top: 0.75rem;
+      padding: 0.2rem 0.6rem; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+
+    /* Separator */
+    .section-divider {
+      width: 100%; height: 1px; margin: 2rem 0;
+      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    }
+
+    /* Founder mini cards for the secondary section */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem; margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .founders-grid { grid-template-columns: 1fr; }
+    }
+
+    .founder-mini {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius); overflow: hidden;
+      transition: all 0.3s; box-shadow: var(--card-shadow);
+    }
+
+    .founder-mini:hover {
+      border-color: rgba(108,92,231,0.3); box-shadow: var(--glow);
+      transform: translateY(-2px);
+    }
+
+    .founder-mini-header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color);
+    }
+
+    .founder-mini-avatar {
+      width: 50px; height: 50px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.8rem; font-weight: 700; color: white; flex-shrink: 0;
+      font-size: 1.1rem; font-weight: 700; color: white; flex-shrink: 0;
     }
 
-    .founder-info h3 {
-      font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700;
-    }
-
-    .founder-info .role {
-      color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.15rem;
-    }
-
-    .founder-info .net-worth {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      margin-top: 0.5rem; padding: 0.25rem 0.75rem;
-      border-radius: 100px; font-size: 0.8rem; font-weight: 600;
-    }
-
-    /* Three-column sections inside card */
-    .founder-sections {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    @media (max-width: 1024px) {
-      .founder-sections { grid-template-columns: 1fr; }
-      .founder-section-col { border-right: none !important; border-bottom: 1px solid var(--border-color); }
-      .founder-section-col:last-child { border-bottom: none; }
-    }
-
-    .founder-section-col {
-      padding: 2rem;
-      border-right: 1px solid var(--border-color);
-    }
-
-    .founder-section-col:last-child { border-right: none; }
-
-    .col-title {
-      display: flex; align-items: center; gap: 0.5rem;
+    .founder-mini-info h3 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.06em;
-      margin-bottom: 1.25rem; padding-bottom: 0.75rem;
-      border-bottom: 2px solid;
+      font-size: 1.05rem; font-weight: 700;
     }
 
-    .col-title svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-    /* Story text */
-    .story-text {
-      font-size: 0.92rem; color: var(--text-secondary); line-height: 1.75;
+    .founder-mini-info .role {
+      font-size: 0.78rem; color: var(--text-muted);
     }
 
-    .story-text p { margin-bottom: 1rem; }
-
-    .story-text strong { color: var(--text-primary); font-weight: 600; }
-
-    .story-text .highlight {
-      background: rgba(108,92,231,0.08); border-left: 3px solid;
-      padding: 0.75rem 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin: 1rem 0; font-style: italic;
+    .founder-mini-body {
+      padding: 1.25rem 1.5rem;
     }
 
-    .story-text .year-marker {
+    .founder-mini-body .mini-section {
+      margin-bottom: 1rem;
+    }
+
+    .founder-mini-body .mini-section:last-child { margin-bottom: 0; }
+
+    .founder-mini-body .mini-label {
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 0.8rem;
-      padding: 0.15rem 0.5rem; border-radius: 4px;
-      display: inline-block; margin-bottom: 0.25rem;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 0.35rem;
     }
 
-    /* Advice cards */
-    .advice-item {
-      background: rgba(108,92,231,0.04);
-      border: 1px solid rgba(108,92,231,0.1);
-      border-radius: var(--radius-sm);
-      padding: 0.85rem 1rem;
-      margin-bottom: 0.75rem;
+    .founder-mini-body p {
+      font-size: 0.84rem; color: var(--text-secondary); line-height: 1.65;
     }
 
-    .advice-item .advice-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600; font-size: 0.85rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .advice-item p {
-      font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;
+    .founder-mini-body .quote {
+      font-style: italic; font-size: 0.82rem;
+      border-left: 2px solid; padding-left: 0.75rem;
+      margin-top: 0.5rem; color: var(--text-secondary);
     }
 
     /* Fade in */
@@ -316,37 +504,6 @@
     }
 
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* Summary banner */
-    .summary-banner {
-      background: var(--bg-secondary); border: 1px solid var(--border-color);
-      border-radius: var(--radius); padding: 3rem 2rem; margin: 2rem auto 4rem;
-      max-width: 1200px;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;
-    }
-
-    .summary-item { text-align: center; padding: 1rem; }
-    .summary-item .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .summary-item h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; margin-bottom: 0.5rem; }
-    .summary-item p { font-size: 0.88rem; color: var(--text-secondary); }
-
-    /* AI Opinion quotes */
-    .ai-opinion {
-      background: rgba(108,92,231,0.05);
-      border-left: 3px solid;
-      padding: 0.75rem 1rem;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin-bottom: 0.85rem;
-      font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
-    }
-
-    .ai-opinion strong { color: var(--text-primary); }
-
-    .opinion-label {
-      display: inline-block; padding: 0.15rem 0.5rem;
-      border-radius: 4px; font-size: 0.7rem; font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
 
     /* Sources */
     .sources-section {
@@ -377,19 +534,27 @@
       color: var(--text-muted); font-size: 0.85rem;
       border-top: 1px solid var(--border-color);
     }
+
+    @media (max-width: 600px) {
+      .deals-table { font-size: 0.8rem; }
+      .deals-table th, .deals-table td { padding: 0.65rem 0.75rem; }
+      .featured-news { padding: 1.5rem; }
+      .ticker-bar { display: none; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge"><span>Biografias financieras &bull; Sept. 2026</span></div>
-    <h1>Lo que los <span class="gradient-text">Fundadores</span> dicen sobre el <span class="gradient-text">Futuro de la IA</span></h1>
-    <p>Investigacion profunda de 9 visionarios: como empezaron desde cero, el momento que cambio todo, sus opiniones sobre la IA, y los consejos que dan a los jovenes. Historias completas contadas como un experto en biografias financieras.</p>
+    <div class="hero-badge"><span>Noticias de IA &amp; Startups &bull; Sept. 2026</span></div>
+    <h1>El Mundo de las <span class="gradient-text">Startups de IA</span> en Tiempo Real</h1>
+    <p>Noticias recopiladas de YCombinator, Twitter/X, Silicon Valley y San Francisco. Rondas de financiacion, adquisiciones, IPOs, como funcionan las startups de IA, y las opiniones de los fundadores mas influyentes.</p>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="number">9</div><div class="label">Fundadores</div></div>
-      <div class="hero-stat"><div class="number">3</div><div class="label">Puntos clave por fundador</div></div>
-      <div class="hero-stat"><div class="number">$1.5T+</div><div class="label">Patrimonio combinado</div></div>
+      <div class="hero-stat"><div class="number">$510B</div><div class="label">Inversion global H1 2026</div></div>
+      <div class="hero-stat"><div class="number">80%</div><div class="label">Del VC va a IA</div></div>
+      <div class="hero-stat"><div class="number">5,668</div><div class="label">Empresas YC total</div></div>
+      <div class="hero-stat"><div class="number">60%</div><div class="label">Startups YC son IA</div></div>
     </div>
     <div class="scroll-indicator">
       <span>Scroll</span>
@@ -400,802 +565,772 @@
   <!-- Nav -->
   <nav>
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Visionarios IA</a>
+      <a href="#" class="nav-logo">Startups &amp; IA</a>
       <div class="nav-links">
-        <a href="#elon">Musk</a>
-        <a href="#sam">Altman</a>
-        <a href="#zuck">Zuckerberg</a>
-        <a href="#jensen">Huang</a>
-        <a href="#bezos">Bezos</a>
-        <a href="#dario">Amodei</a>
-        <a href="#nadella">Nadella</a>
-        <a href="#pichai">Pichai</a>
-        <a href="#chesky">Chesky</a>
-        <a href="#dorsey">Dorsey</a>
+        <a href="#breaking" class="active">Noticias</a>
+        <a href="#deals">Deals</a>
+        <a href="#yc">YCombinator</a>
+        <a href="#twitter">Twitter/X</a>
+        <a href="#how">Como funcionan</a>
+        <a href="#founders">Fundadores</a>
       </div>
     </div>
   </nav>
 
-  <!-- Summary -->
-  <div class="container">
-    <div class="section-header">
-      <div class="tag" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">Tres pilares por fundador</div>
-      <h2>Comienzo &bull; Punto de inflexion &bull; Consejos</h2>
-      <p>Cada fundador se analiza en tres dimensiones: como empezo desde la nada, el momento exacto que transformo su empresa, y lo que aconseja a la nueva generacion.</p>
-    </div>
-
-    <div class="summary-banner fade-in">
-      <div class="summary-item">
-        <div class="icon">&#x1F331;</div>
-        <h4>El comienzo</h4>
-        <p>De garajes, dormitorios y colchones inflables a imperios globales. La historia de origen completa.</p>
-      </div>
-      <div class="summary-item">
-        <div class="icon">&#x26A1;</div>
-        <h4>El punto de inflexion</h4>
-        <p>Ese momento critico donde todo pudo haber colapsado o despegar. La decision que cambio todo.</p>
-      </div>
-      <div class="summary-item">
-        <div class="icon">&#x1F4AC;</div>
-        <h4>Opiniones sobre IA</h4>
-        <p>Que piensan sobre el futuro de la inteligencia artificial y como sera el mundo en 5 anos.</p>
-      </div>
-      <div class="summary-item">
-        <div class="icon">&#x1F3AF;</div>
-        <h4>Consejos a jovenes</h4>
-        <p>Las lecciones que dan a la nueva generacion, directamente de sus bocas, sin filtros.</p>
+  <!-- Ticker -->
+  <div class="container" style="margin-top:1.5rem;">
+    <div class="ticker-bar fade-in">
+      <div class="ticker-label">En vivo</div>
+      <div class="ticker-content">
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-5);"></span> SpaceX adquiere Cursor por $60B</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-3);"></span> Anthropic prepara su IPO</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-4);"></span> OpenAI lanza GPT-6 Sol</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-6);"></span> Nvidia compra Hugging Face por $12.9B</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-1);"></span> YC S26: 208 empresas, 60% IA</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-2);"></span> Robotics startups levantan $23B en 2026</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-7);"></span> Perplexity alcanza $750M ARR</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-8);"></span> Kleiner Perkins lanza fondo IA de $3.5B</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-5);"></span> SpaceX adquiere Cursor por $60B</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-3);"></span> Anthropic prepara su IPO</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-4);"></span> OpenAI lanza GPT-6 Sol</span>
+        <span class="ticker-item"><span class="ticker-dot" style="background:var(--accent-6);"></span> Nvidia compra Hugging Face por $12.9B</span>
       </div>
     </div>
   </div>
 
-  <!-- ========== FOUNDERS ========== -->
-  <div class="container">
+  <!-- ========== BREAKING NEWS ========== -->
+  <div id="breaking" class="container">
+    <div class="section-header">
+      <div class="tag" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">Noticias principales</div>
+      <h2>Lo que esta pasando ahora en IA y Startups</h2>
+      <p>Las noticias mas importantes de septiembre 2026 desde Silicon Valley, San Francisco, YCombinator y Twitter/X.</p>
+    </div>
 
-    <!-- ===== 1. ELON MUSK ===== -->
-    <div id="elon" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-1);">EM</div>
-        <div class="founder-info">
-          <h3>Elon Musk</h3>
-          <div class="role">CEO de Tesla, SpaceX, xAI &bull; Fundador de PayPal, Neuralink, The Boring Company</div>
-          <div class="net-worth" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">~$400B+ &bull; La persona mas rica del mundo</div>
-        </div>
+    <!-- Featured story -->
+    <div class="featured-news fade-in">
+      <div class="featured-label">&#x1F525; Noticia destacada &mdash; Septiembre 2026</div>
+      <h3>La inversion global en startups rompe todos los records: $510 mil millones en el primer semestre de 2026</h3>
+      <div class="featured-body">
+        <p>Segun Crunchbase, la inversion global en startups alcanzo los <strong>$510 mil millones en el primer semestre de 2026</strong>, superando todo lo invertido en 2025 ($440B). La inteligencia artificial captura ahora el <strong>80% de todo el capital de venture capital</strong>, subiendo desde un 34% en 2024. Las mega-rondas de OpenAI ($122B), Anthropic ($30B), y xAI ($20B) dominan los titulares, pero la verdadera historia esta en las miles de startups verticales que estan transformando industrias especificas.</p>
+        <p>El mercado de exits tambien esta en maximos historicos: SpaceX salio a bolsa con una valoracion de <strong>$1.77 billones</strong>, y las adquisiciones de startups IA superaron los $100B en el primer semestre. Es el mercado de salida mas fuerte desde el boom de 2021.</p>
       </div>
-      <div class="founder-sections">
-        <!-- Comienzo -->
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-1);border-color:var(--accent-1);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">1971</span></p>
-            <p>Nacio en Pretoria, Sudafrica. Su madre era modelo y dietista, su padre ingeniero. <strong>A los 12 anos creo un videojuego llamado Blastar y lo vendio por $500</strong> a una revista de informatica. Ya desde nino mostraba una obsesion por la tecnologia y la lectura &mdash; leia hasta 10 horas al dia.</p>
-            <p><span class="year-marker" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">1988</span></p>
-            <p>A los 17 anos huyo de Sudafrica para evitar el servicio militar obligatorio del apartheid. Llego a Canada con poco dinero, trabajo en una granja y en una caldera de una empresa maderera. Luego se mudo a EE.UU. y estudio fisica en la Universidad de Pensilvania.</p>
-            <p><span class="year-marker" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">1995</span></p>
-            <p><strong>Cofundo Zip2 con su hermano Kimbal</strong>, una especie de Google Maps primitivo para periodicos. Dormian en la oficina y se duchaban en el YMCA. Compaq la compro en 1999 por $300 millones. Musk recibio $22 millones.</p>
-            <p><span class="year-marker" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">1999</span></p>
-            <p>Fundo X.com, un banco online. Se fusiono con Confinity y se convirtio en <strong>PayPal</strong>. eBay lo adquirio en 2002 por $1.5 mil millones. Musk gano $175 millones. En lugar de retirarse, <strong>aposto practicamente todo en SpaceX y Tesla</strong>.</p>
-          </div>
-        </div>
-
-        <!-- Punto de inflexion -->
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2008 &mdash; El peor ano de su vida</span></p>
-            <p>Todo estaba al borde del colapso. <strong>Tesla tenia solo $9 millones en el banco y estaba a dias de la bancarrota.</strong> SpaceX habia fallado tres lanzamientos consecutivos del Falcon 1. Musk habia invertido mas de $100 millones de su fortuna de PayPal en ambas empresas.</p>
-            <p>Su matrimonio se estaba desmoronando. Estaba pidiendo dinero prestado a amigos para pagar el alquiler. La crisis financiera global de 2008 hacia imposible conseguir inversores.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              "Literalmente tenia pesadillas. Podia sentir el dinero escapandose. Era como estar sangrando." &mdash; Elon Musk sobre 2008
-            </div>
-            <p><strong>El milagro:</strong> En septiembre de 2008, el cuarto lanzamiento del Falcon 1 por fin fue exitoso. Semanas despues, NASA le dio a SpaceX un contrato de $1.6 mil millones. Y el 23 de diciembre &mdash; a dias de la quiebra total &mdash; <strong>Tesla cerro una ronda de financiacion de $40 millones.</strong></p>
-            <p>Sin esa convergencia de eventos en las ultimas semanas de 2008, Musk habria perdido ambas empresas y habria quedado en bancarrota personal.</p>
-            <p><strong>La leccion:</strong> Musk aposto todo &mdash; literalmente hasta el ultimo dolar &mdash; en su vision. La mayoria habria diversificado o se habria retirado con los millones de PayPal. El no. Y eso es lo que lo separa.</p>
-          </div>
-        </div>
-
-        <!-- Consejos + Opiniones IA -->
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-2);border-color:var(--accent-2);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Trabaja el doble que los demas"</div>
-            <p>"Si alguien trabaja 50 horas a la semana y tu trabajas 100, lograras en 6 meses lo que ellos en un ano."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Si necesitas palabras de motivacion, no lo hagas"</div>
-            <p>Crear una startup es "como comer vidrio y mirar al abismo". Solo hazlo si estas cableado para ello.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Toma riesgos mientras eres joven"</div>
-            <p>"El mejor momento para emprender es cuando eres joven. A medida que envejeces, tus obligaciones aumentan."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Crea algo util"</div>
-            <p>"Enfocate en la utilidad. La mayoria de startups fracasan porque es dificil generar valor real."</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">AGI 2026-2027</div>
-              <p><strong>La IA sera mas inteligente que cualquier humano a finales de 2026.</strong> Para 2030, la inteligencia combinada de la IA superara la de toda la humanidad. En 10-20 anos, el trabajo sera opcional.</p>
-            </div>
-          </div>
-        </div>
+      <div class="featured-stats">
+        <div class="featured-stat"><div class="fs-number">$510B</div><div class="fs-label">Invertidos H1 2026</div></div>
+        <div class="featured-stat"><div class="fs-number">$392B</div><div class="fs-label">Solo en EE.UU. y Canada</div></div>
+        <div class="featured-stat"><div class="fs-number">80%</div><div class="fs-label">Dirigido a IA</div></div>
+        <div class="featured-stat"><div class="fs-number">$1.77T</div><div class="fs-label">IPO de SpaceX</div></div>
       </div>
     </div>
 
-    <!-- ===== 2. SAM ALTMAN ===== -->
-    <div id="sam" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-2);">SA</div>
-        <div class="founder-info">
-          <h3>Sam Altman</h3>
-          <div class="role">CEO de OpenAI &bull; Ex-presidente de Y Combinator &bull; Creador de ChatGPT</div>
-          <div class="net-worth" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">~$2B+ &bull; El hombre detras de la revolucion IA</div>
+    <!-- News grid -->
+    <div class="news-grid">
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">Silicon Valley</div>
+        <h3>SpaceX adquiere Cursor (Anysphere) por $60 mil millones</h3>
+        <div class="card-body">
+          <p>La mayor adquisicion de una startup respaldada por venture capital en la historia. <strong>Cursor</strong>, el editor de codigo IA que alcanzo $6B en ARR y que usa el 70% de las Fortune 500, fue adquirido por SpaceX en un deal all-stock. Cursor habia levantado $3.4B en seis rondas y estaba valorado en $50B antes de la adquisicion.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">Adquisicion</span>
+          <span>Agosto 2026</span>
+          <span>&bull; TechCrunch, Forbes</span>
         </div>
       </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-2);border-color:var(--accent-2);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">1985</span></p>
-            <p>Nacio en Chicago, crecio en St. Louis, Missouri. Su madre dermatologa y su padre corredor de bienes raices. <strong>A los 8 anos recibio su primera Mac</strong> y se obsesiono con programar y desarmar hardware.</p>
-            <p><span class="year-marker" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">2003</span></p>
-            <p>Entro a Stanford a estudiar ciencias de la computacion, pero <strong>la dejo antes de graduarse</strong> para fundar Loopt, una app de mapeo social movil. La empresa no fue un gran exito, pero le enseno las bases del emprendimiento.</p>
-            <p><span class="year-marker" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">2014</span></p>
-            <p><strong>A los 28 anos, sucedio a Paul Graham como presidente de Y Combinator</strong>, la incubadora mas prestigiosa del mundo. Bajo su liderazgo, YC nutrio a Airbnb, Instacart, Twitch y cientos de startups exitosas. Ahi aprendio a identificar talento y patrones de exito.</p>
-            <p><span class="year-marker" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">2015</span></p>
-            <p>Cofundo OpenAI con Elon Musk, con $1 mil millones de respaldo. La mision: desarrollar IA que beneficie a toda la humanidad. En 2019 se convirtio en CEO. Su riqueza personal viene mayormente de inversiones angel en startups, no de OpenAI.</p>
-          </div>
-        </div>
 
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">Noviembre 2022 &mdash; ChatGPT</span></p>
-            <p><strong>El lanzamiento de ChatGPT fue el Big Bang de la IA moderna.</strong> En solo 5 dias alcanzo un millon de usuarios. En 2 meses, 100 millones. Fue el producto de consumo con crecimiento mas rapido de la historia.</p>
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">Noviembre 2023 &mdash; El golpe de estado</span></p>
-            <p>La junta directiva de OpenAI <strong>despidio a Altman el 18 de noviembre de 2023</strong>, acusandolo de no ser "consistentemente sincero". Fue el drama corporativo mas grande de la era tech moderna.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              La pelea real era velocidad vs. seguridad. Altman queria moverse rapido. La junta queria ir despacio. ChatGPT habia sorprendido a sus propios creadores con capacidades que nadie predijo.
-            </div>
-            <p><strong>En solo 5 dias fue reinstaurado como CEO.</strong> El 95% de los empleados de OpenAI firmo una carta amenazando con renunciar si no lo traia de vuelta. Microsoft ofrecio contratarlos a todos. La crisis demostro que Altman ERA OpenAI.</p>
-            <p>Salio mas fuerte: nueva junta directiva, mas poder, y OpenAI acelero su crecimiento a ritmos sin precedentes.</p>
-          </div>
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">San Francisco</div>
+        <h3>Anthropic se prepara para salir a bolsa: IPO inminente</h3>
+        <div class="card-body">
+          <p><strong>Anthropic</strong> presento confidencialmente los papeles de IPO ante la SEC en junio 2026. La empresa detras de Claude alcanzo una valoracion de <strong>$380B</strong> tras su Serie G de $30B. Dario Amodei y Sam Altman comparecieron juntos ante el Consejo de Seguridad de la ONU pidiendo estandares internacionales de seguridad IA.</p>
         </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">IPO</span>
+          <span>Junio-Sept 2026</span>
+          <span>&bull; Bloomberg, CNN</span>
+        </div>
+      </div>
 
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-5);border-color:var(--accent-5);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"El interes compuesto aplica a tu carrera"</div>
-            <p>Cada esfuerzo, aprendizaje y relacion temprana se multiplica exponencialmente. Trabajar duro al principio de tu carrera es lo mas subestimado del mundo.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Si te da verguenza la primera version, lanzaste tarde"</div>
-            <p>No sobre-pienses ni sobre-planifiques. Actua rapido. La velocidad de ejecucion es lo que separa a los ganadores.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Necesitas una creencia profunda"</div>
-            <p>Necesitas una conviccion personal profunda de que lo que vas a hacer, lo que mucha gente dice que es estupido, va a funcionar y ser importante.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"La persistencia lo es todo"</div>
-            <p>Los fundadores exitosos pasaron muchisimo tiempo en su idea cuando la mayoria ya habria abandonado.</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Superinteligencia 2030</div>
-              <p><strong>Para 2030, la IA superara a los humanos.</strong> El 30-40% de las tareas de la economia se haran por IA. En "un par de anos", la IA hara descubrimientos cientificos que humanos no pueden.</p>
-            </div>
-          </div>
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Modelos</div>
+        <h3>GPT-6 Sol, Claude Opus 5.5 y Grok 4.7: la carrera se intensifica</h3>
+        <div class="card-body">
+          <p>En la misma semana de septiembre 2026, <strong>OpenAI lanzo GPT-6 Sol</strong>, Anthropic lanzo <strong>Claude Opus 5.5</strong>, y xAI lanzo <strong>Grok 4.7</strong>. Las tres empresas tambien lanzaron modelos mas baratos para competir con modelos chinos low-cost. Tanto OpenAI como Anthropic pausaron brevemente el desarrollo tras incidentes de seguridad.</p>
         </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">Producto</span>
+          <span>Sept 2026</span>
+          <span>&bull; AI Weekly</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">Adquisicion</div>
+        <h3>Nvidia compra Hugging Face por $12.9 mil millones</h3>
+        <div class="card-body">
+          <p><strong>Nvidia</strong> cerro la adquisicion de <strong>Hugging Face</strong> en septiembre 2026, consolidando su posicion como eje central del ecosistema de IA. Hugging Face, la plataforma open-source mas grande del mundo para modelos de machine learning, se une al gigante de los chips GPU que domina el hardware IA.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">M&amp;A</span>
+          <span>Sept 2026</span>
+          <span>&bull; Bloomberg</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Seguridad IA</div>
+        <h3>Altman, Amodei y Musk piden frenar el desarrollo de IA</h3>
+        <div class="card-body">
+          <p>En un movimiento sin precedentes, <strong>Sam Altman, Dario Amodei y Elon Musk</strong> &mdash; normalmente rivales &mdash; pidieron conjuntamente ralentizar el desarrollo de IA. Altman escribio en X: <em>"Primero, podriamos perder el control del futuro ante la IA."</em> Google, OpenAI y Anthropic formaron la <strong>Frontier AI Standards Agency</strong>.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Seguridad</span>
+          <span>Sept 2026</span>
+          <span>&bull; CNN, Fast Company</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(225,112,85,0.15);color:var(--accent-7);">Robotica</div>
+        <h3>Las startups de robotica levantan $23B en 2026</h3>
+        <div class="card-body">
+          <p>El sector de robotica IA explota: <strong>Figure AI</strong> (valorada en $39B) ya tiene robots humanoides trabajando turnos de 20 horas en fabricas de BMW. <strong>Bedrock Robotics</strong> levanto $270M Serie B. Las startups de robotica ya han levantado <strong>$23B en 2026</strong>, igualando todo lo de 2025.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">Robotica</span>
+          <span>2026</span>
+          <span>&bull; Inc., PitchBook</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(162,155,254,0.15);color:var(--accent-8);">Talento</div>
+        <h3>Exodo de Google DeepMind alimenta boom de startups</h3>
+        <div class="card-body">
+          <p>Segun Bloomberg, un grupo de 15 empleados y alumni de <strong>Google DeepMind</strong> se reunieron en Londres para discutir como fundar startups IA. El exodo de talento de las Big Tech hacia startups se acelera. <strong>Reflection</strong>, fundada por ex-DeepMind, ya vale $8B con solo 2 anos. Andrej Karpathy se unio a Anthropic generando 6.2M de views en X.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(162,155,254,0.12);color:var(--accent-8);">Talento</span>
+          <span>Sept 2026</span>
+          <span>&bull; Bloomberg</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">Coding IA</div>
+        <h3>Devin (Cognition) alcanza $26B de valoracion</h3>
+        <div class="card-body">
+          <p><strong>Cognition</strong>, la empresa detras del agente autonomo de programacion <strong>Devin</strong>, cerro una Serie D de $1B en mayo 2026. Su valoracion salto de $10.2B a <strong>$26B</strong> en 8 meses. El ingeniero Eric Lu de Cognition factorizo RSA-260 usando Devin, el mayor numero RSA factorizado publicamente.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">Funding</span>
+          <span>Mayo 2026</span>
+          <span>&bull; TechCrunch</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">Busqueda IA</div>
+        <h3>Perplexity AI: de $121M a $23B en 30 meses</h3>
+        <div class="card-body">
+          <p><strong>Perplexity</strong> cerro su Serie E a $23B en enero 2026. Su ingreso anualizado alcanzo <strong>$750M</strong> en agosto 2026, impulsado por el lanzamiento de <strong>Perplexity Computer</strong>, un agente IA para automatizar tareas de ordenador. Nvidia esta en conversaciones para invertir a una valoracion superior a $30B.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">Crecimiento</span>
+          <span>Ago 2026</span>
+          <span>&bull; ValueAdd VC</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== BIG DEALS TABLE ========== -->
+  <div id="deals" class="container">
+    <div class="section-header">
+      <div class="tag" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">Mega deals</div>
+      <h2>Las rondas de financiacion mas grandes de 2026</h2>
+      <p>Las mayores inyecciones de capital en startups de IA este ano. Cifras que cambian las reglas del juego.</p>
+    </div>
+
+    <table class="deals-table fade-in">
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>Ronda</th>
+          <th>Valoracion</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="company-name">OpenAI</td>
+          <td class="amount">$122B</td>
+          <td>$500B+</td>
+          <td>Ronda record</td>
+        </tr>
+        <tr>
+          <td class="company-name">SpaceX (IPO)</td>
+          <td class="amount">$75B</td>
+          <td>$1.77T</td>
+          <td>IPO</td>
+        </tr>
+        <tr>
+          <td class="company-name">SpaceX &rarr; Cursor</td>
+          <td class="amount">$60B</td>
+          <td>&mdash;</td>
+          <td>Adquisicion</td>
+        </tr>
+        <tr>
+          <td class="company-name">Anthropic</td>
+          <td class="amount">$30B</td>
+          <td>$380B</td>
+          <td>Serie G</td>
+        </tr>
+        <tr>
+          <td class="company-name">xAI</td>
+          <td class="amount">$20B</td>
+          <td>$200B+</td>
+          <td>Ronda (Enero)</td>
+        </tr>
+        <tr>
+          <td class="company-name">Waymo</td>
+          <td class="amount">$16B</td>
+          <td>$126B</td>
+          <td>Ronda (Sequoia)</td>
+        </tr>
+        <tr>
+          <td class="company-name">Nvidia &rarr; Hugging Face</td>
+          <td class="amount">$12.9B</td>
+          <td>&mdash;</td>
+          <td>Adquisicion</td>
+        </tr>
+        <tr>
+          <td class="company-name">OpenAI &rarr; io</td>
+          <td class="amount">$6.5B</td>
+          <td>&mdash;</td>
+          <td>Adquisicion (all-stock)</td>
+        </tr>
+        <tr>
+          <td class="company-name">Cognition (Devin)</td>
+          <td class="amount">$1B</td>
+          <td>$26B</td>
+          <td>Serie D</td>
+        </tr>
+        <tr>
+          <td class="company-name">Together AI</td>
+          <td class="amount">$800M</td>
+          <td>$8.3B</td>
+          <td>Serie C</td>
+        </tr>
+        <tr>
+          <td class="company-name">Legora (YC)</td>
+          <td class="amount">$550M</td>
+          <td>&mdash;</td>
+          <td>Serie D</td>
+        </tr>
+        <tr>
+          <td class="company-name">Nexthop AI</td>
+          <td class="amount">$500M</td>
+          <td>&mdash;</td>
+          <td>Serie B</td>
+        </tr>
+        <tr>
+          <td class="company-name">Chai Discovery</td>
+          <td class="amount">$400M</td>
+          <td>$3.8B</td>
+          <td>Serie C</td>
+        </tr>
+        <tr>
+          <td class="company-name">Bedrock Robotics</td>
+          <td class="amount">$270M</td>
+          <td>$1.75B</td>
+          <td>Serie B</td>
+        </tr>
+        <tr>
+          <td class="company-name">Harvey (Legal IA)</td>
+          <td class="amount">$200M</td>
+          <td>$11B</td>
+          <td>Serie (Sequoia)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== YCOMBINATOR ========== -->
+  <div id="yc" class="container">
+    <div class="section-header">
+      <div class="tag" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Y Combinator</div>
+      <h2>Lo ultimo de YCombinator</h2>
+      <p>El acelerador mas importante del mundo apuesta todo por la IA. El 60% de sus ultimas batches son startups IA-nativas.</p>
+    </div>
+
+    <div class="featured-news fade-in" style="margin-bottom:2rem;">
+      <div class="featured-label">&#x1F4E2; Garry Tan &mdash; CEO de Y Combinator</div>
+      <h3>"El 25% de las startups de YC tienen el 95% de su codigo escrito por IA"</h3>
+      <div class="featured-body">
+        <p>En Startup School 2026, Garry Tan introdujo el concepto de <strong>"AGI personal"</strong>: agentes IA que corren en tu propia infraestructura, acumulan tu conocimiento con el tiempo, y multiplican dramaticamente tu capacidad de construir. Urgió a los fundadores a crear <strong>empresas "IA-nativas"</strong> en lugar de simplemente adoptar herramientas IA.</p>
+        <p><strong>Sobre destilacion de modelos:</strong> En septiembre 2026, Tan dijo que no haria nada sobre la destilacion de modelos por laboratorios chinos. Al contrario, quiere que los laboratorios americanos de codigo abierto hagan lo mismo con los modelos frontier, dando a EE.UU. un ecosistema open-weight mas robusto.</p>
+        <p><strong>La tesis de YC para 2026:</strong> "Ya no necesitas un equipo de 50 o 100 ingenieros... no tienes que levantar tanto capital. El capital dura mucho mas." Seis de las siete oportunidades que YC destaco en su Request for Startups 2026 se centran en <strong>sistemas IA que reemplazan a humanos</strong>, no que los asisten.</p>
       </div>
     </div>
 
-    <!-- ===== 3. MARK ZUCKERBERG ===== -->
-    <div id="zuck" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-3);">MZ</div>
-        <div class="founder-info">
-          <h3>Mark Zuckerberg</h3>
-          <div class="role">CEO de Meta &bull; Fundador de Facebook, Instagram, WhatsApp</div>
-          <div class="net-worth" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">~$227B &bull; De dormitorio de Harvard a imperio social</div>
+    <div class="news-grid">
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">YC W26</div>
+        <h3>Batch W26: 214 empresas, la mas fuerte de la historia</h3>
+        <div class="card-body">
+          <p><strong>214 startups</strong> en 9 categorias. El 60% construye productos IA-nativos. <strong>14 empresas</strong> alcanzaron $1M ARR antes del Demo Day. Destacan <strong>Hex Security</strong> (penetration testing IA, $1M ARR en 8 semanas) y <strong>GrazeMate</strong> (drones autonomos para ganado, favorita de los VCs).</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">Batch</span>
+          <span>Marzo 2026</span>
         </div>
       </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">1984</span></p>
-            <p>Nacio en White Plains, Nueva York. Su padre era dentista y su madre psiquiatra. <strong>A los 12 anos creo "ZuckNet"</strong>, un sistema de mensajeria instantanea que su padre usaba en el consultorio dental para comunicarse con la familia.</p>
-            <p>Era un prodigio de la programacion. Antes de entrar a la universidad, ya habia creado varias aplicaciones funcionales. Empresas de software intentaron contratarlo en el instituto.</p>
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2004</span></p>
-            <p>En su segundo ano en Harvard, creo CourseMatch y FaceMash (que la universidad cerro por inapropiado). <strong>El 4 de febrero de 2004, lanzo "The Facebook" desde su dormitorio.</strong> Se hizo viral instantaneamente. En meses, lo expandio a otras universidades.</p>
-            <p>Dejo Harvard en 2004 y se mudo a Palo Alto. Peter Thiel le dio su primera inversion de $500,000. <strong>En 2008, con solo 23 anos, se convirtio en el billonario mas joven de la historia.</strong></p>
-          </div>
-        </div>
 
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">2021 &mdash; La apuesta del metaverso</span></p>
-            <p>En octubre de 2021, <strong>Zuckerberg renombro Facebook a Meta</strong> y declaro el metaverso como el futuro. La empresa estaba en crisis: TikTok crecia sin control, Apple recorto los ingresos publicitarios con sus cambios de privacidad, y el proyecto Libra (cripto) habia fracasado.</p>
-            <p>Gasto mas de <strong>$70 mil millones</strong> en Reality Labs durante cuatro anos. Las perdidas eran enormes. Wall Street castigaba las acciones. Los analistas lo declaraban acabado.</p>
-            <p><span class="year-marker" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">2023-2026 &mdash; El pivot a IA</span></p>
-            <div class="highlight" style="border-color:var(--accent-4);">
-              Zuckerberg admitio: "La IA avanzo mas rapido que el hardware que necesitabamos para el metaverso." Pivoteo toda la empresa hacia inteligencia artificial.
-            </div>
-            <p>Lanzo <strong>Llama como modelo de IA open-source</strong>, apostando contra la corriente (OpenAI y Google eran cerrados). Fue una jugada brillante: la comunidad de desarrolladores adopto Llama masivamente, y Meta se posiciono como lider de la IA abierta.</p>
-            <p>Resultado: la accion de Meta se recupero espectacularmente. <strong>De $90 en 2022 a mas de $600 en 2026.</strong> La estrategia de IA abierta le devolvio la relevancia y el capital.</p>
-          </div>
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">YC S26</div>
+        <h3>Batch S26: 208 empresas apuestan por agentes, robotica y deep tech</h3>
+        <div class="card-body">
+          <p>Desde data centers flotantes y semiconductores de diamante hasta robots y redes de satelites. <strong>Waddle Labs</strong> (Claude Code para robotica) y <strong>TovenAI</strong> (agentes IA para compliance financiero) destacan. Al menos 2 startups alcanzaron valoraciones de <strong>$175M+</strong>.</p>
         </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-6);border-color:var(--accent-6);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-6);">
-            <div class="advice-title" style="color:var(--accent-6);">"No construyas una empresa. Resuelve un problema."</div>
-            <p>"Las mejores empresas tratan de impulsar algun tipo de cambio social. Empieza con el problema, no con la empresa."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-6);">
-            <div class="advice-title" style="color:var(--accent-6);">"El mayor riesgo es no tomar ningun riesgo"</div>
-            <p>Toma riesgos calculados. Pero no imprudentes. Y muevete rapido: "La innovacion es probar muchas cosas, no solo tener una buena idea."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-6);">
-            <div class="advice-title" style="color:var(--accent-6);">"Solo contrato a alguien si yo trabajaria para esa persona"</div>
-            <p>Nunca comprometas la calidad de la contratacion. Rodearfe de gente mejor que tu.</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Agentes IA personales</div>
-              <p><strong>Miles de millones tendran agentes IA personales en 5 anos</strong> que manejen finanzas, salud y hogar. No usar gafas inteligentes sera una "desventaja cognitiva". Todos tendran un tutor con PhD en cada materia.</p>
-            </div>
-          </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">Batch</span>
+          <span>Sept 2026</span>
         </div>
       </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">YC Stats</div>
+        <h3>YC en numeros: 931 startups IA financiadas</h3>
+        <div class="card-body">
+          <p>YC ha financiado <strong>5,668 empresas</strong> con un valor combinado de <strong>$600B+</strong>, incluyendo 82 unicornios y 17 IPOs. Entre enero 2025 y septiembre 2026, <strong>471 empresas YC cerraron rondas</strong> por $13.3B. Las empresas IA de YC crecen 10-20% por semana, vs 2-4% historico.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">Data</span>
+          <span>2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== TWITTER / X ========== -->
+  <div id="twitter" class="container">
+    <div class="section-header">
+      <div class="tag" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Twitter / X</div>
+      <h2>Lo mas viral en Twitter sobre startups de IA</h2>
+      <p>X sigue siendo donde los fundadores, VCs e investigadores lanzan noticias antes que en cualquier otro lugar.</p>
     </div>
 
-    <!-- ===== 4. JENSEN HUANG ===== -->
-    <div id="jensen" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-4);">JH</div>
-        <div class="founder-info">
-          <h3>Jensen Huang</h3>
-          <div class="role">CEO y cofundador de NVIDIA &bull; El arquitecto de la revolucion IA</div>
-          <div class="net-worth" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">~$130B+ &bull; De mesero de Denny's a rey de los chips</div>
+    <div class="news-grid">
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Viral</div>
+        <h3>Andrej Karpathy se une a Anthropic: 6.2M views en 24h</h3>
+        <div class="card-body">
+          <p>El anuncio de <strong>Andrej Karpathy</strong> (ex-director de IA en Tesla, co-fundador de OpenAI) de que se unia a <strong>Anthropic</strong> en mayo 2026 genero 6.2 millones de visualizaciones en X en solo 24 horas. Demostro que X sigue siendo el canal mas rapido para noticias del mercado IA.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Trending</span>
+          <span>Mayo 2026</span>
         </div>
       </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">1963</span></p>
-            <p>Nacio en Tainan, Taiwan. Su padre era ingeniero quimico, su madre maestra de primaria. <strong>La familia emigro a Tailandia cuando tenia 5 anos,</strong> y luego a EE.UU. cuando tenia 9, huyendo de la inestabilidad por la Guerra de Vietnam.</p>
-            <p>Cuando llego a EE.UU., fue enviado a un internado en Kentucky donde tenia que limpiar banos y hacer labores fisicas. <strong>Trabajo como mesero en Denny's</strong> durante anos para pagarse los estudios.</p>
-            <p><span class="year-marker" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">1984-1993</span></p>
-            <p>Se graduo de Oregon State en ingenieria electrica, luego maestria en Stanford. Trabajo en AMD y LSI Logic aprendiendo diseno de microprocesadores.</p>
-            <p><strong>En 1993, con solo $40,000 y dos companeros</strong> (Chris Malachowsky y Curtis Priem), fundo NVIDIA. Consiguieron $20 millones de capital de riesgo. El objetivo era crear tarjetas graficas para videojuegos. NVIDIA salio a bolsa en 1999, el mismo ano que lanzo el GeForce 256 &mdash; <strong>el primer GPU del mundo.</strong></p>
-          </div>
-        </div>
 
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2006 &mdash; La decision CUDA</span></p>
-            <p>NVIDIA era una empresa de tarjetas graficas para videojuegos. Pero Huang noto algo: <strong>investigadores estaban usando sus GPUs para tareas de computacion que no tenian nada que ver con juegos.</strong></p>
-            <p>La mayoria de CEOs habria ignorado esto. Huang no. Tomo una decision que muchos consideraron irracional: <strong>crear CUDA</strong>, una plataforma de software que permitiera programar GPUs para computacion de proposito general.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              CUDA fue subsidiado por NVIDIA durante 6 anos sin generar ganancias significativas. Wall Street cuestionaba la inversion. Pero cuando exploto el deep learning, CUDA se convirtio en el stack de software mas importante de la IA.
-            </div>
-            <p><strong>Una decada completa antes de ChatGPT</strong>, NVIDIA ya se estaba movilizando para alimentar el potencial computacional de la IA. Cuando llego la explosion de la IA generativa en 2022-2023, NVIDIA era la unica empresa lista. Sus GPUs se convirtieron en la columna vertebral de toda la industria.</p>
-            <p>Resultado: <strong>NVIDIA paso de valer $300 mil millones en 2022 a mas de $3 billones en 2024.</strong> El pivot de GPUs para juegos a GPUs para IA es uno de los pivots empresariales mas notables de la historia.</p>
-          </div>
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Viral</div>
+        <h3>OpenClaw se hace viral: el creador se une a OpenAI</h3>
+        <div class="card-body">
+          <p><strong>OpenClaw</strong>, un asistente IA agentico open-source creado por Peter Steinberger, se hizo viral en X y recibio elogios de Sam Altman. <strong>Fortune</strong> le dedico un articulo completo. En febrero 2026, Steinberger anuncio que se unia a OpenAI para llevar agentes IA al publico general.</p>
         </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-5);border-color:var(--accent-5);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Este es el mejor momento de la historia para emprender"</div>
-            <p>"Estoy celoso de la oportunidad que tienen los jovenes fundadores." Deja de pensar demasiado: "?Que tan dificil puede ser?"</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Las expectativas altas destruyen la resiliencia"</div>
-            <p>"La gente con expectativas muy altas tiene resiliencia muy baja. Una de mis grandes ventajas es que tengo expectativas muy bajas."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Aprende ciencias duras"</div>
-            <p>Fisica, quimica, biologia, ingenieria. El "pensamiento de sistemas" sera la nueva programacion del futuro.</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">$1T en demanda &bull; 100 agentes/persona</div>
-              <p><strong>$1 billon en pedidos de chips para 2027.</strong> Para 2036: 100 agentes IA por cada empleado humano. La proxima ola es la robotica con "IA fisica".</p>
-            </div>
-          </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Open source</span>
+          <span>Feb 2026</span>
         </div>
       </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Debate</div>
+        <h3>La controversia de Grok: imagenes generadas de menores</h3>
+        <div class="card-body">
+          <p>En enero 2026, <strong>Reuters</strong> revelo que <strong>Grok</strong> (xAI de Elon Musk) habia generado imagenes explicitas de menores sin que Musk lo supiera, desatando un intenso debate sobre etica IA y responsabilidad legal. El incidente llevo a demandas judiciales y nuevas regulaciones.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Controversia</span>
+          <span>Ene 2026</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Tendencia</div>
+        <h3>"Vibe coding": cuando un prompt se convierte en una app</h3>
+        <div class="card-body">
+          <p>Los demos de <strong>vibe coding</strong> de Ammaar Reshi &mdash; donde un prompt se convierte en una app desplegada en minutos &mdash; se hicieron virales en X. La cuenta <strong>@fofrAI</strong> comparte experimentos diarios con modelos generativos, actuando como explorador de tendencias. <em>"La nueva competencia no es Humanos vs IA. Es Humanos con IA vs todos los demas."</em></p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Cultura</span>
+          <span>2026</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Debate</div>
+        <h3>Cluely: la startup que dijo "haz trampa en todo"</h3>
+        <div class="card-body">
+          <p><strong>Cluely</strong> lanzo con una campana provocadora de <em>"cheat on everything"</em> que genero atencion masiva y controversia en X. Luego pivoteo a un asistente IA para reuniones. El caso se convirtio en ejemplo de como el marketing controversial puede lanzar una startup, pero tambien destruirla.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Polemica</span>
+          <span>2026</span>
+        </div>
+      </div>
+
+      <div class="news-card fade-in">
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">VC Talk</div>
+        <h3>"La era de los wrappers se acabo": los VCs exigen ejecucion</h3>
+        <div class="card-body">
+          <p><em>"Hace dos anos podias entrar a una reunion con un VC diciendo 'estamos construyendo con gen AI' y salir con un term sheet. Esa era se acabo."</em> Los inversores en 2026 exigen <strong>ejecucion, traccion y revenue</strong>, no demos. El <strong>founder-led sales</strong> es ahora innegociable para levantar rondas.</p>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">VC</span>
+          <span>2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== HOW STARTUPS WORK ========== -->
+  <div id="how" class="container">
+    <div class="section-header">
+      <div class="tag" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">Como funcionan</div>
+      <h2>Asi funcionan las startups de IA en 2026</h2>
+      <p>Desde el modelo de negocio hasta las metricas que miran los VCs. Lo que necesitas saber si quieres entender o crear una startup de IA.</p>
     </div>
 
-    <!-- ===== 5. JEFF BEZOS ===== -->
-    <div id="bezos" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-5);">JB</div>
-        <div class="founder-info">
-          <h3>Jeff Bezos</h3>
-          <div class="role">Fundador de Amazon, Blue Origin, Project Prometheus</div>
-          <div class="net-worth" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">~$233B &bull; De libreria online a la empresa mas grande del mundo</div>
-        </div>
-      </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-5);border-color:var(--accent-5);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">1964</span></p>
-            <p>Nacio como Jeffrey Preston Jorgensen en Albuquerque, Nuevo Mexico. <strong>Sus padres eran adolescentes cuando el nacio</strong> y se divorciaron pronto. A los 4 anos, su madre se caso con Miguel Bezos, un inmigrante cubano ingeniero de Exxon, quien lo adopto.</p>
-            <p>Paso veranos en el rancho de su abuelo en Texas, donde aprendio a reparar molinos de viento y a ser autosuficiente. Estudio ciencias de la computacion e ingenieria electrica en Princeton.</p>
-            <p><span class="year-marker" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">1990-1994</span></p>
-            <p><strong>A los 26 anos se convirtio en el vicepresidente mas joven de D.E. Shaw</strong>, un prestigioso fondo de Wall Street. Ganaba un salario enorme. Tenia una carrera brillante asegurada.</p>
-            <p><span class="year-marker" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">1994</span></p>
-            <p><strong>Dejo todo para manejar hasta Seattle y fundar una libreria online</strong> desde su garaje, financiada con dinero prestado de sus padres. Era 1994 &mdash; la mayoria de la gente ni siquiera habia usado internet. En 4 anos, Amazon tenia $610 millones en ventas y 13 millones de clientes.</p>
-          </div>
-        </div>
+    <div class="how-grid">
 
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2003 &mdash; El nacimiento accidental de AWS</span></p>
-            <p>A principios de los 2000, Amazon crecia exponencialmente, pero detras de la fachada habia un problema masivo: <strong>la infraestructura no podia escalar lo suficientemente rapido.</strong></p>
-            <p>Un pequeno equipo empezo a crear "bloques modulares" de computacion, almacenamiento y bases de datos para uso interno. La idea era simple: herramientas reutilizables para sus propios ingenieros.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              En una reunion en la casa de Bezos en 2003, los directivos tomaron la decision critica: "?Y si vendemos esta infraestructura a otros?" Esa decision cambio la historia de la tecnologia.
-            </div>
-            <p><strong>AWS se lanzo en 2006.</strong> Lo que empezo como un "proyecto lateral torpe" se convirtio en un monstruo de $129 mil millones anuales en ingresos. La nube opera con margenes del 35% &mdash; dramaticamente mas altos que el comercio minorista.</p>
-            <p>AWS se convirtio en el motor de ganancias de Amazon, el contrapeso estrategico a la compresion de margenes del retail. <strong>Sin AWS, Amazon seria una empresa de comercio. Con AWS, es la infraestructura del internet moderno.</strong></p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-2);border-color:var(--accent-2);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Trabaja en una gran empresa antes de emprender"</div>
-            <p>"Esos 10 anos extra de experiencia realmente mejoraron las probabilidades de que Amazon tuviera exito." Aprende como contratar, entrevistar, las bases.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Se obsesivo con el cliente"</div>
-            <p>"Lo mas importante es estar obsesionado con el cliente. Averigua como deleitarlos absolutamente."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"No persigas tendencias"</div>
-            <p>"Haz algo que encuentres interesante y deja que las olas te atrapen. La gente que persigue la tendencia del momento comete un error."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Acepta el fracaso"</div>
-            <p>"Tu negocio sera un experimento y puede fracasar. Esta bien. Deberias estar haciendo swings fuertes."</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">$200B en IA &bull; Espacio</div>
-              <p><strong>Amazon invertira $200B en 2026 en IA.</strong> Los chips propios son "los cimientos de toda la IA". En 20 anos, millones viviran en el espacio gracias a la robotica y la IA.</p>
-            </div>
-          </div>
-        </div>
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(108,92,231,0.15);">&#x1F4B0;</div>
+        <h4>Modelo de negocio dominante: Vertical SaaS</h4>
+        <p>Las startups IA exitosas de 2026 no son "wrappers de ChatGPT". Son <strong>SaaS vertical</strong>: IA aplicada a un workflow especifico dentro de una industria (legal, salud, finanzas). La clave es ownership del workflow, no del modelo. Cursor, Harvey y Sierra son los ejemplos.</p>
+        <div class="how-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">$3.48M revenue por empleado</div>
       </div>
+
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(0,206,201,0.15);">&#x1F465;</div>
+        <h4>Equipos mas pequenos que nunca</h4>
+        <p>La startup de 10 personas se ha convertido en un equipo de <strong>3 personas + 50 agentes IA</strong>. Las startups IA-nativas operan con equipos <strong>40% mas pequenos</strong> y generan 6x mas revenue por empleado que SaaS tradicional. Pre-seed: 1-2 ingenieros. Seed: 3-5. Serie A: 8-15.</p>
+        <div class="how-stat" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">40% equipos mas pequenos</div>
+      </div>
+
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(253,121,168,0.15);">&#x1F4C8;</div>
+        <h4>Metricas que miran los VCs</h4>
+        <p><strong>Burn multiple</strong> (cash burn / new ARR), CAC/LTV, conversion de pilots, y <strong>data flywheel</strong>. En 2026 los VCs priorizan longevidad y eficiencia de capital sobre rendimiento de modelo. Las mejores startups enterprise alcanzan <strong>$2M+ ARR en 12 meses</strong>.</p>
+        <div class="how-stat" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">$2M+ ARR en 12 meses</div>
+      </div>
+
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(253,203,110,0.15);">&#x1F4BB;</div>
+        <h4>La era de los agentes IA (no chatbots)</h4>
+        <p>Sequoia lo define: 2022-24 fue chatbots, 2024-25 modelos de razonamiento, <strong>2026 es el ano de los agentes</strong>. Los agentes IA toman decisiones, interactuan con sistemas, ejecutan workflows y completan tareas. Ya no asisten: <strong>reemplazan</strong>.</p>
+        <div class="how-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">41% CAGR en agentes IA</div>
+      </div>
+
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(85,239,196,0.15);">&#x26A0;</div>
+        <h4>El gran reto: costes de compute</h4>
+        <p><strong>60-70% de una ronda seed se va en infraestructura</strong> antes de firmar un solo cliente. Los costes de GPU pueden superar $1M/mes. La escasez de talento es brutal: las Big Tech roban a los mejores con ofertas astronomicas. <strong>90% de las startups IA fracasan</strong> (vs 70% en tech tradicional).</p>
+        <div class="how-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">90% tasa de fracaso</div>
+      </div>
+
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(116,185,255,0.15);">&#x1F4A1;</div>
+        <h4>Las tres formas de construir sobre IA</h4>
+        <p><strong>1) API:</strong> Llamar a OpenAI/Anthropic (rapido, pero sin ventaja competitiva). <strong>2) Fine-tuning:</strong> Personalizar un modelo open-source (~$180/run). <strong>3) Modelo propio:</strong> Solo viable si tienes datos propietarios masivos. El coste de anadir IA cayo un <strong>90% desde 2024</strong>.</p>
+        <div class="how-stat" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Coste de IA -90% desde 2024</div>
+      </div>
+
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(225,112,85,0.15);">&#x1F480;</div>
+        <h4>Startups IA que fracasaron (y por que)</h4>
+        <p><strong>Builder.ai</strong> quemo $445M fingiendo IA con 700 ingenieros humanos. <strong>Humane</strong> quemo $241M en un dispositivo que nadie quiso. <strong>Forward Health</strong> prometio 3,200 kioscos IA, envio 5. De las 14,000 startups IA lanzadas en 2024, el <strong>40% cerro</strong> en 24 meses.</p>
+        <div class="how-stat" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">14,000 lanzadas &rarr; 5,600 cerradas</div>
+      </div>
+
+      <div class="how-card fade-in">
+        <div class="how-icon" style="background:rgba(162,155,254,0.15);">&#x1F3C6;</div>
+        <h4>Que startups sobreviven</h4>
+        <p>Las que sobreviven estan en <strong>industrias reguladas</strong> (salud, legal, finanzas), tienen <strong>data moats propietarios</strong>, y se integran profundamente en workflows existentes. El 77% usa modelos open-source. Las empresas enterprise tienen 68%+ corriendo 3+ familias de modelos.</p>
+        <div class="how-stat" style="background:rgba(162,155,254,0.12);color:var(--accent-8);">77% usa modelos open-source</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== FOUNDERS (APARTADO) ========== -->
+  <div id="founders" class="container">
+    <div class="section-header">
+      <div class="tag" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">Apartado</div>
+      <h2>Los fundadores detras de todo esto</h2>
+      <p>Resumen de los 10 fundadores de startups mas influyentes: como empezaron, que cambio todo, y que aconsejan. La historia completa de cada uno esta en la version anterior de esta pagina.</p>
     </div>
 
-    <!-- ===== 6. DARIO AMODEI ===== -->
-    <div id="dario" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-6);">DA</div>
-        <div class="founder-info">
-          <h3>Dario Amodei</h3>
-          <div class="role">CEO y cofundador de Anthropic &bull; Creador de Claude &bull; El cientifico que quiere salvar al mundo de la IA</div>
-          <div class="net-worth" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">~$10B+ &bull; De investigador a multibillonario en 5 anos</div>
-        </div>
-      </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-6);border-color:var(--accent-6);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">1983</span></p>
-            <p>Nacio en San Francisco, crecio en el Mission District. Familia de raices italianas. <strong>Desde nino mostro una pasion inusual por las matematicas y los numeros.</strong></p>
-            <p><span class="year-marker" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">Educacion de elite</span></p>
-            <p>Su camino academico fue extraordinario: empezo en Caltech, se transfirio a Stanford (licenciatura en fisica), <strong>doctorado en biofisica de Princeton</strong>, y postdoctorado en la Escuela de Medicina de Stanford. Una formacion cientifica de primer nivel mundial.</p>
-            <p><span class="year-marker" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">2016-2020</span></p>
-            <p>Se unio a OpenAI y ascendio rapidamente a <strong>Vicepresidente de Investigacion</strong>. Lidero el desarrollo de GPT-2 y GPT-3, y fue fundamental en documentar las "leyes de escalamiento" de la IA &mdash; el descubrimiento de que modelos mas grandes con mas datos se vuelven drasticamente mejores.</p>
-          </div>
-        </div>
+    <div class="founders-grid">
 
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2020-2021 &mdash; La ruptura con OpenAI</span></p>
-            <p>Amodei dijo que dejo OpenAI porque <strong>"no confiaba" en Sam Altman.</strong> La disputa central no era si la IA avanzada escalaria, sino si la seguridad debia integrarse desde el principio en el desarrollo de frontera.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              "OpenAI se estaba volviendo cada vez mas comercial. Yo creia que la seguridad debia ser lo primero, no lo ultimo." &mdash; Dario Amodei
-            </div>
-            <p>En diciembre de 2020, <strong>Amodei se fue con un grupo de colegas</strong> y en 2021 cofundo Anthropic con su hermana Daniela. La empresa se construyo alrededor de una idea radical: crear la IA mas poderosa del mundo, pero con seguridad como principio fundacional.</p>
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2023-2026 &mdash; Crecimiento explosivo</span></p>
-            <p>Claude se convirtio en competidor directo de ChatGPT. Amazon y Google invirtieron miles de millones. <strong>Los ingresos se multiplicaron por 7 en un ano.</strong> La valoracion de Anthropic en 2026 alcanzo cientos de miles de millones, convirtiendola en una de las empresas privadas mas valiosas del mundo.</p>
-            <p>Amodei paso de ser un investigador academico a un multibillonario en menos de 5 anos, sin haber fundado una startup tradicional jamas.</p>
+      <!-- Elon Musk -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-1);">EM</div>
+          <div class="founder-mini-info">
+            <h3>Elon Musk</h3>
+            <div class="role">Tesla, SpaceX, xAI &bull; ~$400B+</div>
           </div>
         </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-5);border-color:var(--accent-5);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-1);">Comienzo</div>
+            <p>Huyo de Sudafrica a los 17. Cofundo Zip2 (vendida por $300M), luego PayPal ($1.5B). Aposto todo en SpaceX y Tesla.</p>
           </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Construye junto a la IA, no contra ella"</div>
-            <p>No te resistas. Explora sectores vinculados a la infraestructura fisica y la cadena de suministro de la IA.</p>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>2008: Tesla a dias de la bancarrota, SpaceX con 3 fallos. El 4to lanzamiento exitoso + contrato NASA de $1.6B lo salvaron.</p>
           </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Enfocate en trabajos centrados en humanos"</div>
-            <p>Los roles que involucran comprension interpersonal y engagement podrian perdurar mas en la era de la IA.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Desarrolla pensamiento critico"</div>
-            <p>Prioriza la capacidad de distinguir realidad de desinformacion. Sera cada vez mas complejo en la era de la IA.</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">75% bien, 25% mal</div>
-              <p><strong>IA mejor que humanos en casi todo en 2-3 anos.</strong> 75% de probabilidad de que vaya muy bien. 25% de que vaya muy mal. Podria curar la mayoria de enfermedades en 5-10 anos. Pide desacelerar ante senales de desalineacion.</p>
-            </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-1);">Fundo xAI para competir con OpenAI. Cree que la IA es "el mayor riesgo existencial" pero tambien la mayor oportunidad. Colossus 2 duplicara chips Nvidia a finales de 2026.</div>
           </div>
         </div>
       </div>
+
+      <!-- Sam Altman -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-2);">SA</div>
+          <div class="founder-mini-info">
+            <h3>Sam Altman</h3>
+            <div class="role">CEO de OpenAI &bull; ~$2B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Comienzo</div>
+            <p>Dejo Stanford a los 19 para crear Loopt (location app). Se convirtio en presidente de YC a los 28. Cofundo OpenAI en 2015.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>Nov 2023: Despedido y recontratado en 5 dias. El 95% de los empleados amenazaron con irse si no volvia. Ahora OpenAI vale $500B+.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-5);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-2);">"Podriamos perder el control del futuro ante la IA." Predice modelos extraordinariamente capaces para 2030. Comparecio ante la ONU pidiendo regulacion internacional.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mark Zuckerberg -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-3);">MZ</div>
+          <div class="founder-mini-info">
+            <h3>Mark Zuckerberg</h3>
+            <div class="role">CEO de Meta &bull; ~$200B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Comienzo</div>
+            <p>Creo Facebook en su dormitorio de Harvard en 2004. Rechazo ofertas de Yahoo ($1B) y Microsoft. Se mudo a Palo Alto con 19 anos.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-1);">Punto de inflexion</div>
+            <p>2012: IPO desastrosa + transicion fallida a movil. Aposto todo por mobile-first y compro Instagram ($1B) y WhatsApp ($19B).</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-4);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-3);">Lidera la apuesta open-source con Llama. Cree que la IA open-source es fundamental para la democracia tecnologica. Meta AI tiene millones de usuarios diarios.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jensen Huang -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-4);">JH</div>
+          <div class="founder-mini-info">
+            <h3>Jensen Huang</h3>
+            <div class="role">CEO de NVIDIA &bull; ~$120B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-4);">Comienzo</div>
+            <p>Inmigrante taiwanes, fregaba platos en Denny's. Cofundo NVIDIA en 1993 en un Denny's. Sobrevivio a casi quebrar en los 90s.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>2012: Aposto por deep learning antes que nadie. CUDA se convirtio en el estandar. Ahora NVIDIA vale $3T+ y domina el 80%+ del mercado GPU IA.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-4);">Compro Hugging Face por $12.9B. "Cada pais necesita su propia infraestructura IA soberana." Las GPUs de Nvidia son el petroleo de la era IA.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jeff Bezos -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-5);">JB</div>
+          <div class="founder-mini-info">
+            <h3>Jeff Bezos</h3>
+            <div class="role">Fundador de Amazon &bull; ~$210B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-5);">Comienzo</div>
+            <p>Dejo Wall Street en 1994 para vender libros online desde un garaje en Seattle. Condujo el mismo a entregar los primeros paquetes.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>2006: Lanzo AWS como servicio cloud. Lo que empezo como "vender la capacidad sobrante de servidores" se convirtio en el negocio mas rentable de Amazon.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-6);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-5);">Fundo Project Prometheus en nov 2025 con $6.2B. Gran inversor en Anthropic. "La IA es como la electricidad: transformara cada industria." AWS Bedrock es plataforma clave para startups IA.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dario Amodei -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-6);">DA</div>
+          <div class="founder-mini-info">
+            <h3>Dario Amodei</h3>
+            <div class="role">CEO de Anthropic &bull; ~$10B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-6);">Comienzo</div>
+            <p>Fisico computacional de Princeton. VP de Research en OpenAI. Salio en 2021 por desacuerdos sobre seguridad y fundo Anthropic con su hermana Daniela.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>Claude se convirtio en competidor directo de GPT. Anthropic alcanzo $380B de valoracion. Presento papeles de IPO en junio 2026.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-6);">Predice que la IA superara a los humanos "en casi todo" para 2027. Pidio ralentizar el desarrollo ante la ONU. "Necesitamos oversight internacional, no nacional."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Satya Nadella -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-7);">SN</div>
+          <div class="founder-mini-info">
+            <h3>Satya Nadella</h3>
+            <div class="role">CEO de Microsoft &bull; ~$1B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-8);">Comienzo</div>
+            <p>De Hyderabad, India, a ingeniero en Microsoft. Paso 22 anos escalando internamente. Nombrado CEO en 2014 cuando la empresa parecia irrelevante.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>Inversion de $13B en OpenAI. Integro Copilot en Office, GitHub, Azure. Microsoft paso de "la empresa del Windows" a lider de la era IA.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-8);">"La IA es la plataforma mas transformadora desde internet." Apuesta por democratizar el acceso a IA para cada persona y organizacion del planeta.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sundar Pichai -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-8);">SP</div>
+          <div class="founder-mini-info">
+            <h3>Sundar Pichai</h3>
+            <div class="role">CEO de Google/Alphabet &bull; ~$1.5B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-7);">Comienzo</div>
+            <p>Crecio en Chennai, India, en un apartamento de 2 habitaciones. Llego a Stanford con una beca. Creo Chrome y lidero Android antes de ser CEO.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>ChatGPT amenazo la busqueda de Google. Declaro "codigo rojo" y lanzo Gemini para competir. Reorganizo Google alrededor de la IA.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-7);">Formo la Frontier AI Standards Agency con OpenAI y Anthropic. Enfrenta exodo de talento de DeepMind hacia startups. Google compro Wiz por $32B para seguridad cloud IA.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brian Chesky -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:var(--gradient-9);">BC</div>
+          <div class="founder-mini-info">
+            <h3>Brian Chesky</h3>
+            <div class="role">CEO de Airbnb &bull; ~$12B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Comienzo</div>
+            <p>Disenador de RISD sin dinero. Alquilo colchones inflables en su salon para pagar el alquiler. Asi nacio Airbnb. YCombinator los acepto en 2009.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>COVID destruyo el 80% de sus ingresos en semanas. Despidio 1,900 empleados. Reconstruyo Airbnb centrado en estancias largas y se volvio rentable.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-5);">Vision IA</div>
+            <div class="quote" style="border-color:var(--accent-2);">"La IA permitira que Airbnb se convierta en un concierge personalizado para cada viajero." Integra IA en recomendaciones, precios y atencion al cliente.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jack Dorsey -->
+      <div class="founder-mini fade-in">
+        <div class="founder-mini-header">
+          <div class="founder-mini-avatar" style="background:linear-gradient(135deg, #dfe6e9, #636e72);">JD</div>
+          <div class="founder-mini-info">
+            <h3>Jack Dorsey</h3>
+            <div class="role">Cofundador de Twitter y Block &bull; ~$5B+</div>
+          </div>
+        </div>
+        <div class="founder-mini-body">
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--text-secondary);">Comienzo</div>
+            <p>De St. Louis, fascinado por la radio policial y los taxis. Creo Twitter en 2006 como sistema de "status updates". Simultaneamente cofundo Square (ahora Block).</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-3);">Punto de inflexion</div>
+            <p>Despedido de Twitter en 2008, volvio como CEO en 2015. Vendio Twitter a Musk en 2022 por $44B. Block se convirtio en plataforma fintech con IA integrada.</p>
+          </div>
+          <div class="mini-section">
+            <div class="mini-label" style="color:var(--accent-2);">Vision IA</div>
+            <div class="quote" style="border-color:var(--text-muted);">Esceptico de la IA centralizada. Aboga por IA descentralizada y open-source. "La IA no deberia estar controlada por 3 empresas en San Francisco."</div>
+          </div>
+        </div>
+      </div>
+
     </div>
-
-    <!-- ===== 7. SATYA NADELLA ===== -->
-    <div id="nadella" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-7);">SN</div>
-        <div class="founder-info">
-          <h3>Satya Nadella</h3>
-          <div class="role">CEO de Microsoft &bull; El hombre que rescato a Microsoft y la llevo a $3 billones</div>
-          <div class="net-worth" style="background:rgba(162,155,254,0.15);color:#a29bfe;">~$1B+ &bull; El CEO que transformo un gigante dormido</div>
-        </div>
-      </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:#a29bfe;border-color:#a29bfe;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(162,155,254,0.15);color:#a29bfe;">1967</span></p>
-            <p>Nacio en Hyderabad, India. Su padre era un funcionario de la elite del Servicio Administrativo de la India. <strong>Crecio en una familia de clase media con enfasis en la educacion.</strong></p>
-            <p><span class="year-marker" style="background:rgba(162,155,254,0.15);color:#a29bfe;">1984</span></p>
-            <p><strong>Viajo a EE.UU. a los 17 anos</strong> para estudiar en la Universidad de Wisconsin-Milwaukee. Luego completo una maestria en ciencias de la computacion y un MBA de la Universidad de Chicago. Una combinacion unica de tecnologia y negocios.</p>
-            <p><span class="year-marker" style="background:rgba(162,155,254,0.15);color:#a29bfe;">1992</span></p>
-            <p>Empezo su carrera en Sun Microsystems. <strong>Se unio a Microsoft en 1992</strong>, donde paso 22 anos escalando posiciones silenciosamente. Trabajo en Windows NT, luego lidero divisiones de negocio, despues la division online, y finalmente la division de nube empresarial.</p>
-            <p>No era el candidato obvio para CEO. No era carismatico ni polemico. Pero entendia la nube y la empresa como nadie.</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2014 &mdash; CEO de una empresa en declive</span></p>
-            <p>Cuando Nadella tomo el mando el 4 de febrero de 2014, <strong>Microsoft habia perdido relevancia.</strong> Apple lideraba la innovacion de consumo, Google controlaba busqueda y movil, Amazon dominaba la nube. El mercado de PCs se encogia. La estrategia movil habia fracasado.</p>
-            <p>Lo primero que hizo fue cambiar la cultura. <strong>Elimino el sistema de "stack ranking"</strong> (clasificar empleados unos contra otros), que habia creado una cultura toxica de competencia interna. Leyo "Nonviolent Communication" y lo recomendo a todo su equipo ejecutivo.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              "Paso de 'lo sabe todo' a 'lo aprende todo'." Nadella transformo la cultura de Microsoft de arrogancia a curiosidad.
-            </div>
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2019 &mdash; La apuesta por OpenAI</span></p>
-            <p><strong>Invirtio $13 mil millones en OpenAI</strong> antes de que fuera rentable. Nadie mas habria hecho esa apuesta. Integro IA en absolutamente todo: Word, Excel, GitHub, Azure. Adquirio Activision por $69 mil millones.</p>
-            <p>Resultado: <strong>Microsoft paso de $300 mil millones de valor a mas de $3 billones.</strong> Es una de las transformaciones corporativas mas grandes de la historia de la tecnologia.</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-2);border-color:var(--accent-2);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"No esperes a tu proximo trabajo para dar lo mejor"</div>
-            <p>No veas tu trabajo actual como un obstaculo. Es tu oportunidad de demostrar tu compromiso y ganas de aprender.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Mis exitos se construyeron de fracasos"</div>
-            <p>"No se trata del fracaso, sino de aprender de los fracasos."</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Curiosidad + ambicion = carrera extraordinaria"</div>
-            <p>Prioriza tu sed de conocimiento al tomar decisiones. Si combinas eso con un poco de ambicion, puedes propulsar tu carrera a alturas inesperadas.</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Amplificador cognitivo</div>
-              <p><strong>La IA es "bicicletas para la mente", no un reemplazo.</strong> Las empresas que confien en un solo proveedor de IA no sobreviviran. Los agentes crearan un mercado mas grande que la nube. "Estamos demasiado auto-obsesionados" como industria.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== 8. SUNDAR PICHAI ===== -->
-    <div id="pichai" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-8);">SP</div>
-        <div class="founder-info">
-          <h3>Sundar Pichai</h3>
-          <div class="role">CEO de Google y Alphabet &bull; Lider de Gemini &bull; De un departamento sin telefono a dirigir Google</div>
-          <div class="net-worth" style="background:rgba(250,177,160,0.15);color:#fab1a0;">~$1.5B+ &bull; El inmigrante que llego a la cima</div>
-        </div>
-      </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:#fab1a0;border-color:#fab1a0;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(250,177,160,0.15);color:#fab1a0;">1972</span></p>
-            <p>Nacio en Madras (Chennai), India. <strong>Crecio en un departamento de dos habitaciones donde dormia con su hermano en la sala.</strong> Su padre era ingeniero electrico en la multinacional britanica GEC. No tenian coche, ni telefono, ni television durante gran parte de su infancia.</p>
-            <p>Tenia una <strong>memoria extraordinaria para los numeros de telefono</strong> y mostro interes temprano en la tecnologia. Su padre le contaba sobre su trabajo y eso encendio su curiosidad.</p>
-            <p><span class="year-marker" style="background:rgba(250,177,160,0.15);color:#fab1a0;">Educacion triple de elite</span></p>
-            <p><strong>Ingenieria metalurgica del IIT Kharagpur</strong> (con medalla de plata), beca para Stanford (maestria en ciencia de materiales), y MBA de Wharton. Tres de las instituciones mas prestigiosas del mundo.</p>
-            <p><span class="year-marker" style="background:rgba(250,177,160,0.15);color:#fab1a0;">2004</span></p>
-            <p>Despues de trabajar en Applied Materials y McKinsey, <strong>se unio a Google en 2004.</strong> Lidero el desarrollo de Google Toolbar, luego Chrome (que se convirtio en el navegador mas popular del mundo), y luego Android. Twitter y Microsoft intentaron reclutarlo agresivamente, pero Google le pago enormes paquetes para retenerlo.</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">Noviembre 2022 &mdash; Code Red</span></p>
-            <p>A pesar de que Google habia declarado en 2016 que era una "empresa AI-first", y a pesar de tener los dos mejores laboratorios de IA del mundo (Google Brain y DeepMind), <strong>ChatGPT los tomo por sorpresa.</strong></p>
-            <p>Google emitio un <strong>"codigo rojo"</strong> interno. El buscador mas grande del mundo, la maquina de dinero de $200 mil millones al ano en publicidad, de repente parecia vulnerable.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              La decision critica: fusionar Google Brain y DeepMind en Google DeepMind. La rivalidad interna termino. Todos los investigadores apuntaron al mismo objetivo.
-            </div>
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2023-2026 &mdash; Gemini</span></p>
-            <p>De esa fusion nacio <strong>Gemini</strong>, construido como un modelo nativamente multimodal (texto, imagenes, video y codigo juntos, no retrofiteado). La vision de Pichai: transformar Google de un buscador en un agente personal que planifica viajes, gestiona calendarios y escribe codigo en tiempo real.</p>
-            <p><strong>Gemini alcanzo mil millones de usuarios</strong> en la app, convirtiendose en el producto de crecimiento mas rapido de Google y el producto numero 14 en alcanzar los mil millones de usuarios.</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-5);border-color:var(--accent-5);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Rodearfe de gente mas inteligente que tu"</div>
-            <p>Buscate posiciones donde la gente estire tus habilidades. En varios momentos de su carrera, trabajo con personas que sentia eran mejores que el.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Ponte en situaciones incomodas"</div>
-            <p>Sorprenderas a ti mismo con lo que puedes lograr. La incomodidad es donde esta el crecimiento.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Los reveses no importan. Es un camino largo."</div>
-            <p>No dejes que los fracasos te desmotiven. "Tuve mucha suerte en el camino", pero lo importante es escuchar tu corazon y disfrutar el trabajo.</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">AGI en 3 anos</div>
-              <p><strong>"En 3 anos, lo llames AGI o no, sera muy, muy poderoso."</strong> La IA tomara decisiones por ti en 1 ano. Los humanos somos los arquitectos; la IA es la herramienta.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== 9. BRIAN CHESKY ===== -->
-    <div id="chesky" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:var(--gradient-9);">BC</div>
-        <div class="founder-info">
-          <h3>Brian Chesky</h3>
-          <div class="role">CEO y cofundador de Airbnb &bull; De colchones inflables a $80B</div>
-          <div class="net-worth" style="background:rgba(129,236,236,0.15);color:#81ecec;">~$9.2B &bull; El disenador que rediseno los viajes</div>
-        </div>
-      </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:#81ecec;border-color:#81ecec;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(129,236,236,0.15);color:#81ecec;">1981</span></p>
-            <p>Nacio en Niskayuna, Nueva York. <strong>Ambos padres eran trabajadores sociales</strong> &mdash; no habia dinero de tech ni conexiones de Silicon Valley. Desde nino tenia pasion por el arte y el diseno: replicaba pinturas, redesenaba zapatos y juguetes.</p>
-            <p>Estudio diseno industrial en la Rhode Island School of Design (RISD), donde conocio a Joe Gebbia. <strong>Ganaba $40,000 al ano como disenador industrial en Los Angeles.</strong> Apenas le alcanzaba para vivir.</p>
-            <p><span class="year-marker" style="background:rgba(129,236,236,0.15);color:#81ecec;">2007 &mdash; Los colchones</span></p>
-            <p>Una conferencia de diseno agoto todos los hoteles de San Francisco. Chesky y Gebbia no podian pagar el alquiler. Solucion desesperada: <strong>inflaron 3 colchones de aire, crearon un sitio web basico, y ofrecieron alojamiento con desayuno.</strong> Nacio "AirBed & Breakfast".</p>
-            <p><span class="year-marker" style="background:rgba(129,236,236,0.15);color:#81ecec;">2009</span></p>
-            <p>Y Combinator los acepto. <strong>Paul Graham no estaba convencido de la idea pero admiro su determinacion.</strong> Les dio $20,000. Para sobrevivir, vendian cajas de cereales personalizadas de Obama y McCain. Literalmente sobrevivian con tarjetas de credito maxeadas.</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2020 &mdash; La pandemia casi lo destruye</span></p>
-            <p>COVID-19 golpeo a Airbnb como un meteorito. <strong>Los ingresos cayeron un 72%</strong> cuando el turismo global se paralizo. La empresa que estaba a punto de salir a bolsa de repente estaba luchando por sobrevivir.</p>
-            <p>Chesky tuvo que <strong>despedir al 25% de su plantilla</strong> (1,900 empleados). Lo que hizo a continuacion definio su legado.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              Busco consejo de Jony Ive (ex-disenador de Apple), quien le dijo: "No gestionas personas. Gestionas personas a traves del trabajo." Eso cambio su filosofia completamente.
-            </div>
-            <p>Adopto el <strong>"Founder Mode"</strong> inspirado por Steve Jobs: elimino capas de gestion, centralizo personalmente la planificacion de producto, redeseno la jerarquia de la empresa. "Cuanto menos participaba directamente, mas problemas me chupaban."</p>
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">Resultado</span></p>
-            <p>Un ano despues, Airbnb se recupero y genero <strong>mas ingresos que nunca: $6 mil millones en 2021, casi $10 mil millones en 2023.</strong> Salio a bolsa en 2020 en una de las IPOs mas exitosas de la historia tech.</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-2);border-color:var(--accent-2);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"?Por que tu empresa merece existir?"</div>
-            <p>La mejor respuesta: "Porque si yo no lo hago, nadie mas lo hara." Si no puedes responder eso, no la crees.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"100 personas que te amen > 1 millon que les gustes"</div>
-            <p>Enfocate en crear fanaticos, no usuarios tibios. La lealtad profunda de pocos vale mas que la indiferencia de muchos.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-2);">
-            <div class="advice-title" style="color:var(--accent-2);">"Se descarado pidiendo ayuda"</div>
-            <p>"Cada vez que no sabia como hacer algo, buscaba a alguien que si supiera. Los mejores emprendedores son los mas descarados del mundo."</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Momento historico</div>
-              <p><strong>"Cuarta ventana en la historia tech, mas grande que las tres anteriores combinadas."</strong> IA escribe 60% del codigo de Airbnb. Una persona podra tener una empresa de $1B. Agente Airbnb en 2027.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== 10. JACK DORSEY ===== -->
-    <div id="dorsey" class="founder-card fade-in">
-      <div class="founder-header">
-        <div class="founder-avatar" style="background:linear-gradient(135deg,#636e72,#2d3436);">JD</div>
-        <div class="founder-info">
-          <h3>Jack Dorsey</h3>
-          <div class="role">Cofundador de Twitter &bull; CEO de Block (Square) &bull; El minimalista radical del tech</div>
-          <div class="net-worth" style="background:rgba(99,110,114,0.15);color:#b2bec3;">~$4.1B &bull; De taximetros digitales a revolucionar pagos</div>
-        </div>
-      </div>
-      <div class="founder-sections">
-        <div class="founder-section-col">
-          <div class="col-title" style="color:#b2bec3;border-color:#b2bec3;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            Su comienzo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(99,110,114,0.15);color:#b2bec3;">1976</span></p>
-            <p>Nacio en St. Louis, Missouri. <strong>De adolescente se obsesiono con el software de despacho</strong> &mdash; los sistemas que coordinan taxis y servicios de emergencia. Le fascinaba como mover piezas en tiempo real por una ciudad.</p>
-            <p><strong>A los 15 anos creo una aplicacion funcional de despacho</strong> para coordinar vehiculos. Era tan buena que empresas reales la usaron. Contacto al fundador de la empresa de despacho mas grande del mundo para aprender.</p>
-            <p><span class="year-marker" style="background:rgba(99,110,114,0.15);color:#b2bec3;">2006 &mdash; Twitter</span></p>
-            <p>Mientras trabajaba en Odeo (empresa de podcasting de Evan Williams), durante un hackathon <strong>propuso una idea loca: una plataforma para compartir estados cortos por SMS.</strong> Twitter se registro el 21 de marzo de 2006 con Dorsey como primer CEO.</p>
-            <p>Twitter crecio de manera explosiva, pero la relacion con los cofundadores se deterioro. Fue removido como CEO en 2008, regreso en 2015, y finalmente dejo la empresa en 2021 (Elon Musk la compro en 2022 por $44 mil millones).</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-3);border-color:var(--accent-3);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Lo que cambio todo
-          </div>
-          <div class="story-text">
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2009-2010 &mdash; Square nace del fracaso</span></p>
-            <p>Un amigo de Dorsey, el soplador de vidrio Jim McKelvey, perdio una venta de $2,000 porque no podia aceptar tarjetas de credito. <strong>Dorsey vio el problema y creo Square:</strong> un lector de tarjetas que se conectaba al telefono.</p>
-            <p>Era elegantemente simple. Permitio que cualquier persona &mdash; vendedores ambulantes, artistas, duenos de food trucks &mdash; aceptara pagos con tarjeta. <strong>Democratizo los pagos.</strong></p>
-            <p><span class="year-marker" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">2021-2026 &mdash; La evolucion a Block</span></p>
-            <p>Renombro Square a <strong>Block Inc.</strong> para reflejar su expansion: Cash App, Afterpay, Tidal (musica), Bitkey (crypto). De un producto simple de pagos a un ecosistema financiero completo.</p>
-            <div class="highlight" style="border-color:var(--accent-3);">
-              En febrero 2026, Dorsey tomo la decision mas audaz del tech ese ano: despidio al 40% de Block (de 10,000 a 6,000), citando explicitamente la IA. La accion subio 22%. "La mayoria de empresas hara lo mismo en un ano."
-            </div>
-            <p>Dorsey paso de ser recordado como "el tipo de Twitter" a ser el CEO que hizo la declaracion mas contundente sobre como la IA va a reestructurar el empleo corporativo.</p>
-          </div>
-        </div>
-
-        <div class="founder-section-col">
-          <div class="col-title" style="color:var(--accent-5);border-color:var(--accent-5);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><path d="M10 21h4"/></svg>
-            Consejos a jovenes + Vision IA
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"No empieces con 'quiero crear una empresa'"</div>
-            <p>Empieza con "soy apasionado por esto y voy a hacer lo que sea para que funcione." La pasion primero, el negocio despues.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Empieza ya. Deja de poner excusas"</div>
-            <p>Si mantienes una idea en tu cabeza sin ejecutarla, tendras un millon de excusas. Muestra, no cuentes.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Lleva un diario"</div>
-            <p>"Probablemente lo mejor que he hecho en mi vida." Encuentra una forma simple de medir tu progreso.</p>
-          </div>
-          <div class="advice-item" style="border-color:var(--accent-5);">
-            <div class="advice-title" style="color:var(--accent-5);">"Pon tus ideas en papel primero"</div>
-            <p>Antes de desarrollar cualquier concepto de negocio, escribe tus pensamientos. La claridad viene de escribir.</p>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="col-title" style="color:var(--accent-4);border-color:var(--accent-4);font-size:0.8rem;">Vision sobre IA</div>
-            <div class="ai-opinion" style="border-color:var(--accent-4);">
-              <div class="opinion-label" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Despidos masivos por IA</div>
-              <p><strong>Despidio al 40% de Block por IA.</strong> "Un equipo mas pequeno puede hacer mas y hacerlo mejor." Predice que la mayoria de empresas haran recortes similares en un ano.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <!-- Sources -->
@@ -1204,40 +1339,40 @@
       <div class="section-header" style="padding-top:0;">
         <div class="tag" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">Fuentes</div>
         <h2>De donde viene esta investigacion</h2>
-        <p>Datos recopilados de entrevistas, keynotes, publicaciones en redes sociales, blogs personales y reportajes de los principales medios tech. Actualizado a septiembre de 2026.</p>
+        <p>Datos recopilados de multiples fuentes. Actualizado a septiembre de 2026.</p>
       </div>
       <div class="sources-grid">
         <div class="source-badge">
-          <div class="source-icon" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">&#x1F426;</div>
-          <div>Twitter / X &mdash; Posts directos de fundadores</div>
+          <div class="source-icon" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">Y</div>
+          <div>YCombinator &mdash; Demo Days, Startup School, RFS</div>
         </div>
         <div class="source-badge">
-          <div class="source-icon" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">&#x25B6;</div>
-          <div>YouTube &mdash; Entrevistas y keynotes completos</div>
+          <div class="source-icon" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">&#x1D54F;</div>
+          <div>Twitter / X &mdash; Fundadores, VCs, investigadores</div>
         </div>
         <div class="source-badge">
-          <div class="source-icon" style="background:rgba(253,203,110,0.15);color:var(--accent-4);">&#x1F4F0;</div>
-          <div>Fortune, Forbes, TechCrunch, CNBC, CNN</div>
+          <div class="source-icon" style="background:rgba(108,92,231,0.15);color:var(--accent-1);">&#x1F4CA;</div>
+          <div>Crunchbase, PitchBook &mdash; Datos de inversion</div>
         </div>
         <div class="source-badge">
-          <div class="source-icon" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">&#x1F310;</div>
-          <div>Reddit &mdash; AMAs y discusiones de fundadores</div>
+          <div class="source-icon" style="background:rgba(253,121,168,0.15);color:var(--accent-3);">&#x1F4F0;</div>
+          <div>TechCrunch, Bloomberg, Forbes, CNBC</div>
         </div>
         <div class="source-badge">
-          <div class="source-icon" style="background:rgba(116,185,255,0.15);color:var(--accent-6);">&#x1F4DD;</div>
-          <div>Blogs personales: Altman, Amodei, Chesky</div>
+          <div class="source-icon" style="background:rgba(85,239,196,0.15);color:var(--accent-5);">&#x1F3E6;</div>
+          <div>Sequoia, a16z, Kleiner Perkins &mdash; Reportes VC</div>
         </div>
         <div class="source-badge">
-          <div class="source-icon" style="background:rgba(162,155,254,0.15);color:#a29bfe;">&#x1F3AC;</div>
-          <div>Davos, GTC, Google I/O, Y Combinator</div>
+          <div class="source-icon" style="background:rgba(162,155,254,0.15);color:var(--accent-8);">&#x1F30E;</div>
+          <div>CNN, Washington Post, Fast Company, Reuters</div>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>Investigacion de biografias financieras &mdash; Septiembre 2026</p>
-    <p style="margin-top:0.5rem;color:var(--text-muted);">Opiniones de los fundadores citados. Patrimonios netos son estimaciones de fuentes publicas (Forbes, Bloomberg).</p>
+    <p>Noticias de IA &amp; Startups &mdash; Recopilacion septiembre 2026</p>
+    <p style="margin-top:0.5rem;color:var(--text-muted);">Datos de inversiones y valoraciones provienen de fuentes publicas (Crunchbase, Forbes, Bloomberg, PitchBook). Cifras pueden variar segun la fuente.</p>
   </footer>
 
   <script>
@@ -1252,6 +1387,8 @@
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
         const target = document.querySelector(link.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
