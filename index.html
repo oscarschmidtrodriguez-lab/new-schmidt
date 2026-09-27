@@ -422,6 +422,90 @@
       font-size: 0.75rem; font-weight: 600;
     }
 
+    /* Rising startup cards */
+    .startup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem; margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .startup-grid { grid-template-columns: 1fr; }
+    }
+
+    .startup-card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius); overflow: hidden;
+      transition: all 0.3s; box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .startup-card:hover {
+      border-color: rgba(0,206,201,0.3); box-shadow: 0 0 40px rgba(0,206,201,0.1);
+      transform: translateY(-2px);
+    }
+
+    .startup-card .sc-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color);
+    }
+
+    .startup-card .sc-left {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+
+    .startup-card .sc-logo {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem; font-weight: 700; color: white; flex-shrink: 0;
+    }
+
+    .startup-card .sc-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+    }
+
+    .startup-card .sc-tagline {
+      font-size: 0.72rem; color: var(--text-muted);
+    }
+
+    .startup-card .sc-valuation {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem; font-weight: 700;
+      padding: 0.2rem 0.6rem; border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .startup-card .sc-body {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .startup-card .sc-body p {
+      font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65;
+    }
+
+    .startup-card .sc-body strong { color: var(--text-primary); }
+
+    .startup-card .sc-stats {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .startup-card .sc-stat {
+      font-size: 0.7rem; font-weight: 600;
+      padding: 0.15rem 0.5rem; border-radius: 4px;
+    }
+
+    .startup-card .sc-drama {
+      margin-top: 0.75rem; padding: 0.65rem 0.85rem;
+      background: rgba(253,121,168,0.05);
+      border-left: 2px solid var(--accent-3);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.8rem; color: var(--text-secondary);
+      font-style: italic;
+    }
+
     /* Separator */
     .section-divider {
       width: 100%; height: 1px; margin: 2rem 0;
@@ -572,6 +656,7 @@
         <a href="#yc">YCombinator</a>
         <a href="#twitter">Twitter/X</a>
         <a href="#how">Como funcionan</a>
+        <a href="#rising">Startups emergentes</a>
         <a href="#founders">Fundadores</a>
       </div>
     </div>
@@ -1065,6 +1150,394 @@
         <h4>Que startups sobreviven</h4>
         <p>Las que sobreviven estan en <strong>industrias reguladas</strong> (salud, legal, finanzas), tienen <strong>data moats propietarios</strong>, y se integran profundamente en workflows existentes. El 77% usa modelos open-source. Las empresas enterprise tienen 68%+ corriendo 3+ familias de modelos.</p>
         <div class="how-stat" style="background:rgba(162,155,254,0.12);color:var(--accent-8);">77% usa modelos open-source</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== RISING STARTUPS ========== -->
+  <div id="rising" class="container">
+    <div class="section-header">
+      <div class="tag" style="background:rgba(0,206,201,0.15);color:var(--accent-2);">Startups emergentes</div>
+      <h2>Las startups mas pequenas que estan dando que hablar</h2>
+      <p>No todo es OpenAI y Anthropic. Estas son las empresas mas pequenas, muchas nacidas de YCombinator o de garajes, que estan cambiando industrias enteras con equipos reducidos.</p>
+    </div>
+
+    <div class="startup-grid">
+
+      <!-- Cluely -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#e74c3c,#c0392b);">CL</div>
+            <div>
+              <div class="sc-name">Cluely</div>
+              <div class="sc-tagline">Asistente IA para entrevistas y ventas</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">~$120M</div>
+        </div>
+        <div class="sc-body">
+          <p>Fundada por <strong>Roy Lee</strong>, un estudiante de Columbia suspendido por usar IA. Lanzo con el eslogan <em>"Cheat on everything"</em> y se hizo viral en TikTok y Twitter. Levanto <strong>$5.3M seed</strong> (Abstract Ventures) y <strong>$15M Serie A</strong> de Andreessen Horowitz. 66 empleados.</p>
+          <div class="sc-drama">Drama: En marzo 2026, Lee admitio que los $7M en ARR que reporto eran falsos. "Lo unico descaradamente deshonesto que he dicho publicamente." La credibilidad se desplomo pese al backing de a16z.</div>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">$20.2M total</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">a16z backed</span>
+            <span class="sc-stat" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">Controversia</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Granola -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#00b894,#00cec9);">GR</div>
+            <div>
+              <div class="sc-name">Granola</div>
+              <div class="sc-tagline">Notas de reunion con IA invisible</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">$1.5B</div>
+        </div>
+        <div class="sc-body">
+          <p>Fundada en Londres en 2023 por <strong>Chris Pedregal y Sam Stephenson</strong>. A diferencia de competidores que meten un bot visible en las reuniones, Granola corre en tu ordenador y transcribe el audio directamente. Levanto <strong>$125M Serie C</strong> (Index Ventures) a <strong>$1.5B</strong> de valoracion. Revenue crecio <strong>250%</strong> en un trimestre. $192M total levantado.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">$192M total</span>
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">Unicornio</span>
+            <span class="sc-stat" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">+250% revenue</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gamma -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe);">GA</div>
+            <div>
+              <div class="sc-name">Gamma</div>
+              <div class="sc-tagline">El "PowerPoint killer" con IA</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">$2.1B</div>
+        </div>
+        <div class="sc-body">
+          <p>Crea presentaciones, webs y documentos con IA generativa. <strong>70 millones de usuarios</strong>, 600,000+ suscriptores de pago, y solo <strong>52 empleados</strong>. Levanto $68M Serie B (a16z) a $2.1B. Lo mas impresionante: <strong>$100M+ ARR</strong> con solo $80M levantados en total. Eficiencia brutal.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">$100M+ ARR</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">52 empleados</span>
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">70M usuarios</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thinking Machines Lab -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#fd79a8,#e84393);">TM</div>
+            <div>
+              <div class="sc-name">Thinking Machines Lab</div>
+              <div class="sc-tagline">Mira Murati (ex-CTO de OpenAI)</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">$12B</div>
+        </div>
+        <div class="sc-body">
+          <p>Fundada en febrero 2025 por <strong>Mira Murati</strong>, la ex-CTO de OpenAI. Levanto la <strong>ronda seed mas grande de la historia: $2B a $12B</strong> de valoracion. Lanzo <strong>Tinker</strong> (API para fine-tuning) e <strong>Inkling</strong> (su primer modelo foundation, open-weights con licencia Apache, julio 2026). Busco $50B pero las negociaciones colapsaron.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">$2B seed record</span>
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">Open-weights</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">CNBC Changemaker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lovable -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#fdcb6e,#e17055);">LO</div>
+            <div>
+              <div class="sc-name">Lovable</div>
+              <div class="sc-tagline">Genera apps completas con un prompt</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">Crecimiento</div>
+        </div>
+        <div class="sc-body">
+          <p>Startup de <strong>vibe coding</strong> que permite a no-programadores construir apps SaaS completas con lenguaje natural. Cerca de <strong>8 millones de usuarios</strong> en solo un ano. Genera full-stack con integracion Supabase y sync con GitHub. Parte del movimiento que esta democratizando la programacion: <em>"Si sabes explicar lo que quieres, puedes construirlo."</em></p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">~8M usuarios</span>
+            <span class="sc-stat" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">Vibe coding</span>
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">No-code IA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ElevenLabs -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#0984e3,#74b9ff);">11</div>
+            <div>
+              <div class="sc-name">ElevenLabs</div>
+              <div class="sc-tagline">Sintesis de voz IA ultra-realista</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">$11B</div>
+        </div>
+        <div class="sc-body">
+          <p>Fundada en 2022 por los polacos <strong>Piotr Dabkowski y Mateusz Staniszewski</strong>. Convierte texto en voz indistinguible de un humano. Levanto <strong>$500M Serie D</strong> (Sequoia) a <strong>$11B</strong>. Ahora tambien hace <strong>IA fisica</strong>: su tecnologia de voz ya vive dentro de robots. De startup de voz a pieza clave de la robotica.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">$500M Serie D</span>
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">Sequoia</span>
+            <span class="sc-stat" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">Voz + Robotica</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hex Security / Parameter -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#e74c3c,#fd79a8);">HX</div>
+            <div>
+              <div class="sc-name">Hex Security (Parameter)</div>
+              <div class="sc-tagline">Hacking autonomo con agentes IA &bull; YC W26</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">~$100M+</div>
+        </div>
+        <div class="sc-body">
+          <p>Graduada de <strong>YC W26</strong>. Fundada en 2026 por <strong>Huzaifa Ahmad, Ahmad Khan y Prama Yudhistira</strong> (10 empleados, San Francisco). Sus agentes IA hacen <strong>penetration testing automatizado</strong>: hackean tu sistema 24/7 para encontrar vulnerabilidades. Alcanzo <strong>$1M ARR en solo 8 semanas</strong> desde el lanzamiento.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">$1M ARR en 8 sem</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">YC W26</span>
+            <span class="sc-stat" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">10 empleados</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GrazeMate -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#55efc4,#00b894);">GM</div>
+            <div>
+              <div class="sc-name">GrazeMate</div>
+              <div class="sc-tagline">Drones autonomos para ganado &bull; YC W26</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">~$30M</div>
+        </div>
+        <div class="sc-body">
+          <p>La favorita de los VCs en el Demo Day de YC W26. El fundador <strong>crecio en una estacion ganadera de 6,000 cabezas en Australia</strong>. Sus drones autonomos pueden <strong>guiar ganado, estimar peso de animales, medir disponibilidad de pasto</strong> y seguir rutas especificas. IA aplicada a la ganaderia: donde menos te lo esperas.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">AgriTech IA</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">YC W26</span>
+            <span class="sc-stat" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">Favorita VCs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sierra AI -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);">SI</div>
+            <div>
+              <div class="sc-name">Sierra AI</div>
+              <div class="sc-tagline">Agentes IA para atencion al cliente</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(162,155,254,0.12);color:var(--accent-8);">$15.8B</div>
+        </div>
+        <div class="sc-body">
+          <p>Cofundada por <strong>Bret Taylor</strong> (ex-CEO de Salesforce, ex-presidente de Twitter). Agentes IA que resuelven incidencias de clientes de forma autonoma por voz y chat. Levanto <strong>$950M en mayo 2026</strong> a $15.8B, meses despues de una ronda de $350M a $10B. ARR estimado: <strong>$200M</strong> (vs $26M a finales de 2024). Crecimiento x8 en 18 meses.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(162,155,254,0.12);color:var(--accent-8);">$200M ARR</span>
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">x8 en 18 meses</span>
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">Bret Taylor</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decagon -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#fdcb6e,#f39c12);">DC</div>
+            <div>
+              <div class="sc-name">Decagon</div>
+              <div class="sc-tagline">Soporte al cliente con agentes IA</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">$4.3B</div>
+        </div>
+        <div class="sc-body">
+          <p>Fundada en 2023 por <strong>Jesse Zhang y Ashwin Sreenivas</strong>. Su innovacion: <strong>Agent Operating Procedures (AOPs)</strong> &mdash; los equipos de CX escriben la logica de los agentes en lenguaje natural. Levanto <strong>$250M Serie D</strong> a $4.3B (enero 2026). $481M total. Compite directamente con Sierra en el mercado enterprise de soporte IA.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">$481M total</span>
+            <span class="sc-stat" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">AOPs</span>
+            <span class="sc-stat" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">vs Sierra</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pika Labs -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#e17055,#fdcb6e);">PK</div>
+            <div>
+              <div class="sc-name">Pika Labs</div>
+              <div class="sc-tagline">Video generativo con IA</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">~$900M</div>
+        </div>
+        <div class="sc-body">
+          <p>Fundada en abril 2023. Genera y edita video con IA. <strong>Meta intento comprarla por ~$500M</strong> en agosto 2025 pero las negociaciones no prosperaron. Levanto $135M total, incluyendo $80M Serie B (Lightspeed). Lanzo app movil en 2025 orientada al uso en redes sociales. Proyectan superar <strong>$1.5B</strong> de valoracion a finales de 2026.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">$135M total</span>
+            <span class="sc-stat" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">Meta quiso comprar</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">Video IA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glean -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#74b9ff,#0984e3);">GL</div>
+            <div>
+              <div class="sc-name">Glean</div>
+              <div class="sc-tagline">Busqueda enterprise con IA</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">$7.2B</div>
+        </div>
+        <div class="sc-body">
+          <p>Busqueda IA que se conecta a todas tus herramientas (email, Slack, docs, tickets). <strong>$300M ARR</strong> &mdash; se triplico en 15 meses desde los $100M. A diferencia de los LLMs genericos, Glean se personaliza para cada empresa ingiriendo datos internos continuamente. $765M levantados en 6 rondas. <strong>CNBC Disruptor 50</strong> en 2026.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">$300M ARR</span>
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">x3 en 15 meses</span>
+            <span class="sc-stat" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">Disruptor 50</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Harvey -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#2d3436,#636e72);">HV</div>
+            <div>
+              <div class="sc-name">Harvey</div>
+              <div class="sc-tagline">IA para abogados y bufetes</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">$15.5B</div>
+        </div>
+        <div class="sc-body">
+          <p>IA vertical para el sector legal. Levanto <strong>$550M</strong> (Sequoia, GIC) que representan el <strong>16% de toda la inversion en legal tech global de 2026</strong>. Los abogados fueron de los primeros profesionales en adoptar IA masivamente porque la IA hace exactamente lo que ellos hacen: procesar texto denso, resumir y redactar. Ahora vale <strong>$15.5B</strong>.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">$550M levantados</span>
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">Legal Tech</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">Sequoia</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Replit -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#f39c12,#e74c3c);">RE</div>
+            <div>
+              <div class="sc-name">Replit</div>
+              <div class="sc-tagline">IDE en la nube con agente IA</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">$9B</div>
+        </div>
+        <div class="sc-body">
+          <p>Fundada en 2016 por <strong>Amjad Masad</strong> como un IDE en el navegador. Evoluciono de autocompletado (Ghostwriter) a un <strong>agente autonomo que construye apps completas</strong>. <strong>40M+ usuarios</strong>, $872M levantados. Es la plataforma de "vibe coding" donde cualquier persona puede construir y desplegar software en lenguaje natural.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">$872M total</span>
+            <span class="sc-stat" style="background:rgba(116,185,255,0.12);color:var(--accent-6);">40M+ usuarios</span>
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">Vibe coding</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Poolside AI -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#00cec9,#0984e3);">PS</div>
+            <div>
+              <div class="sc-name">Poolside AI</div>
+              <div class="sc-tagline">Modelos de lenguaje para codigo</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">Crecimiento</div>
+        </div>
+        <div class="sc-body">
+          <p>Startup enfocada 100% en modelos IA para programacion. Levanto <strong>$1.6B</strong> (Nvidia, eBay). En julio 2026 libero <strong>Laguna S 2.1</strong>, un modelo open-weights de 118B parametros bajo licencia OpenMDW. Compite directamente con los modelos de codigo de OpenAI y Anthropic pero con enfoque totalmente abierto.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">$1.6B total</span>
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">Open-weights</span>
+            <span class="sc-stat" style="background:rgba(253,203,110,0.12);color:var(--accent-4);">118B params</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical Intelligence -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#636e72,#2d3436);">PI</div>
+            <div>
+              <div class="sc-name">Physical Intelligence</div>
+              <div class="sc-tagline">El "cerebro" para robots</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">$11B+</div>
+        </div>
+        <div class="sc-body">
+          <p>Startup de San Francisco de 2 anos. Su modelo puede <strong>dirigir robots para hacer tareas que nunca fueron entrenados</strong> para hacer. En negociaciones para levantar <strong>$1B</strong> a $11B+ de valoracion. Ya levanto $600M en Serie C (2025). Construye los "foundation models" pero para el mundo fisico, no el digital.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(108,92,231,0.12);color:var(--accent-1);">$600M+ total</span>
+            <span class="sc-stat" style="background:rgba(225,112,85,0.12);color:var(--accent-7);">IA Fisica</span>
+            <span class="sc-stat" style="background:rgba(85,239,196,0.12);color:var(--accent-5);">Robotica</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reflection -->
+      <div class="startup-card fade-in">
+        <div class="sc-header">
+          <div class="sc-left">
+            <div class="sc-logo" style="background:linear-gradient(135deg,#81ecec,#00cec9);">RF</div>
+            <div>
+              <div class="sc-name">Reflection</div>
+              <div class="sc-tagline">IA frontier de ex-Google DeepMind</div>
+            </div>
+          </div>
+          <div class="sc-valuation" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">$8B</div>
+        </div>
+        <div class="sc-body">
+          <p>Solo 2 anos y ya vale <strong>$8B</strong>. Fundada en Brooklyn por <strong>Misha Laskin e Ioannis Antonoglou</strong>, investigadores de Google DeepMind. Respaldada por <strong>Nvidia, Sequoia y Lightspeed</strong>. Ha levantado <strong>$2.1B</strong>. Parte del exodo masivo de talento de DeepMind que esta creando la siguiente ola de startups IA.</p>
+          <div class="sc-stats">
+            <span class="sc-stat" style="background:rgba(0,206,201,0.12);color:var(--accent-2);">$2.1B total</span>
+            <span class="sc-stat" style="background:rgba(162,155,254,0.12);color:var(--accent-8);">Ex-DeepMind</span>
+            <span class="sc-stat" style="background:rgba(253,121,168,0.12);color:var(--accent-3);">2 anos &rarr; $8B</span>
+          </div>
+        </div>
       </div>
 
     </div>
