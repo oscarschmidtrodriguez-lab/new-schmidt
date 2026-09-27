@@ -271,8 +271,11 @@
     }
 
     .card-logo, .featured-logo {
-      width: 18px; height: 18px; border-radius: 4px;
-      object-fit: contain; flex-shrink: 0;
+      width: 20px; height: 20px; border-radius: 5px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.55rem; font-weight: 800; color: white;
+      flex-shrink: 0; letter-spacing: -0.02em;
     }
 
     .news-card h3 {
@@ -698,7 +701,7 @@
 
     <!-- Featured story -->
     <div class="featured-news fade-in">
-      <div class="featured-label"><img class="featured-logo" src="https://www.google.com/s2/favicons?domain=crunchbase.com&sz=32" alt="Crunchbase"> &#x1F525; Noticia destacada &mdash; Septiembre 2026</div>
+      <div class="featured-label"><span class="featured-logo" style="background:#0288D1;">CB</span> &#x1F525; Noticia destacada &mdash; Septiembre 2026</div>
       <h3>La inversion global en startups rompe todos los records: $510 mil millones en el primer semestre de 2026</h3>
       <div class="featured-body">
         <p>Segun Crunchbase, la inversion global en startups alcanzo los <strong>$510 mil millones en el primer semestre de 2026</strong>, superando todo lo invertido en 2025 ($440B). La inteligencia artificial captura ahora el <strong>80% de todo el capital de venture capital</strong>, subiendo desde un 34% en 2024. Las mega-rondas de OpenAI ($122B), Anthropic ($30B), y xAI ($20B) dominan los titulares, pero la verdadera historia esta en las miles de startups verticales que estan transformando industrias especificas.</p>
@@ -716,7 +719,7 @@
     <div class="news-grid">
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(253,121,168,0.15);color:var(--accent-3);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=techcrunch.com&sz=32" alt="TechCrunch">Silicon Valley</div>
+        <div class="card-source" style="background:rgba(253,121,168,0.15);color:var(--accent-3);"><span class="card-logo" style="background:#00A562;">TC</span>Silicon Valley</div>
         <h3>SpaceX adquiere Cursor (Anysphere) por $60 mil millones</h3>
         <div class="card-body">
           <p>La mayor adquisicion de una startup respaldada por venture capital en la historia. <strong>Cursor</strong>, el editor de codigo IA que alcanzo $6B en ARR y que usa el 70% de las Fortune 500, fue adquirido por SpaceX en un deal all-stock. Cursor habia levantado $3.4B en seis rondas y estaba valorado en $50B antes de la adquisicion.</p>
@@ -729,7 +732,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(108,92,231,0.15);color:var(--accent-1);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=32" alt="Bloomberg">San Francisco</div>
+        <div class="card-source" style="background:rgba(108,92,231,0.15);color:var(--accent-1);"><span class="card-logo" style="background:#2800D7;">B</span>San Francisco</div>
         <h3>Anthropic se prepara para salir a bolsa: IPO inminente</h3>
         <div class="card-body">
           <p><strong>Anthropic</strong> presento confidencialmente los papeles de IPO ante la SEC en junio 2026. La empresa detras de Claude alcanzo una valoracion de <strong>$380B</strong> tras su Serie G de $30B. Dario Amodei y Sam Altman comparecieron juntos ante el Consejo de Seguridad de la ONU pidiendo estandares internacionales de seguridad IA.</p>
@@ -742,7 +745,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=theverge.com&sz=32" alt="The Verge">Modelos</div>
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><span class="card-logo" style="background:#5600E8;">V</span>Modelos</div>
         <h3>GPT-6 Sol, Claude Opus 5.5 y Grok 4.7: la carrera se intensifica</h3>
         <div class="card-body">
           <p>En la misma semana de septiembre 2026, <strong>OpenAI lanzo GPT-6 Sol</strong>, Anthropic lanzo <strong>Claude Opus 5.5</strong>, y xAI lanzo <strong>Grok 4.7</strong>. Las tres empresas tambien lanzaron modelos mas baratos para competir con modelos chinos low-cost. Tanto OpenAI como Anthropic pausaron brevemente el desarrollo tras incidentes de seguridad.</p>
@@ -755,7 +758,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(85,239,196,0.15);color:var(--accent-5);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=32" alt="Bloomberg">Adquisicion</div>
+        <div class="card-source" style="background:rgba(85,239,196,0.15);color:var(--accent-5);"><span class="card-logo" style="background:#2800D7;">B</span>Adquisicion</div>
         <h3>Nvidia compra Hugging Face por $12.9 mil millones</h3>
         <div class="card-body">
           <p><strong>Nvidia</strong> cerro la adquisicion de <strong>Hugging Face</strong> en septiembre 2026, consolidando su posicion como eje central del ecosistema de IA. Hugging Face, la plataforma open-source mas grande del mundo para modelos de machine learning, se une al gigante de los chips GPU que domina el hardware IA.</p>
@@ -768,7 +771,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=cnn.com&sz=32" alt="CNN">Seguridad IA</div>
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><span class="card-logo" style="background:#CC0000;">C</span>Seguridad IA</div>
         <h3>Altman, Amodei y Musk piden frenar el desarrollo de IA</h3>
         <div class="card-body">
           <p>En un movimiento sin precedentes, <strong>Sam Altman, Dario Amodei y Elon Musk</strong> &mdash; normalmente rivales &mdash; pidieron conjuntamente ralentizar el desarrollo de IA. Altman escribio en X: <em>"Primero, podriamos perder el control del futuro ante la IA."</em> Google, OpenAI y Anthropic formaron la <strong>Frontier AI Standards Agency</strong>.</p>
@@ -781,7 +784,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(225,112,85,0.15);color:var(--accent-7);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=inc.com&sz=32" alt="Inc.">Robotica</div>
+        <div class="card-source" style="background:rgba(225,112,85,0.15);color:var(--accent-7);"><span class="card-logo" style="background:#B91C1C;">I</span>Robotica</div>
         <h3>Las startups de robotica levantan $23B en 2026</h3>
         <div class="card-body">
           <p>El sector de robotica IA explota: <strong>Figure AI</strong> (valorada en $39B) ya tiene robots humanoides trabajando turnos de 20 horas en fabricas de BMW. <strong>Bedrock Robotics</strong> levanto $270M Serie B. Las startups de robotica ya han levantado <strong>$23B en 2026</strong>, igualando todo lo de 2025.</p>
@@ -794,7 +797,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(162,155,254,0.15);color:var(--accent-8);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=bloomberg.com&sz=32" alt="Bloomberg">Talento</div>
+        <div class="card-source" style="background:rgba(162,155,254,0.15);color:var(--accent-8);"><span class="card-logo" style="background:#2800D7;">B</span>Talento</div>
         <h3>Exodo de Google DeepMind alimenta boom de startups</h3>
         <div class="card-body">
           <p>Segun Bloomberg, un grupo de 15 empleados y alumni de <strong>Google DeepMind</strong> se reunieron en Londres para discutir como fundar startups IA. El exodo de talento de las Big Tech hacia startups se acelera. <strong>Reflection</strong>, fundada por ex-DeepMind, ya vale $8B con solo 2 anos. Andrej Karpathy se unio a Anthropic generando 6.2M de views en X.</p>
@@ -807,7 +810,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(0,206,201,0.15);color:var(--accent-2);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=techcrunch.com&sz=32" alt="TechCrunch">Coding IA</div>
+        <div class="card-source" style="background:rgba(0,206,201,0.15);color:var(--accent-2);"><span class="card-logo" style="background:#00A562;">TC</span>Coding IA</div>
         <h3>Devin (Cognition) alcanza $26B de valoracion</h3>
         <div class="card-body">
           <p><strong>Cognition</strong>, la empresa detras del agente autonomo de programacion <strong>Devin</strong>, cerro una Serie D de $1B en mayo 2026. Su valoracion salto de $10.2B a <strong>$26B</strong> en 8 meses. El ingeniero Eric Lu de Cognition factorizo RSA-260 usando Devin, el mayor numero RSA factorizado publicamente.</p>
@@ -820,7 +823,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(253,121,168,0.15);color:var(--accent-3);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=techcrunch.com&sz=32" alt="TechCrunch">Busqueda IA</div>
+        <div class="card-source" style="background:rgba(253,121,168,0.15);color:var(--accent-3);"><span class="card-logo" style="background:#00A562;">TC</span>Busqueda IA</div>
         <h3>Perplexity AI: de $121M a $23B en 30 meses</h3>
         <div class="card-body">
           <p><strong>Perplexity</strong> cerro su Serie E a $23B en enero 2026. Su ingreso anualizado alcanzo <strong>$750M</strong> en agosto 2026, impulsado por el lanzamiento de <strong>Perplexity Computer</strong>, un agente IA para automatizar tareas de ordenador. Nvidia esta en conversaciones para invertir a una valoracion superior a $30B.</p>
@@ -956,7 +959,7 @@
     </div>
 
     <div class="featured-news fade-in" style="margin-bottom:2rem;">
-      <div class="featured-label"><img class="featured-logo" src="https://www.google.com/s2/favicons?domain=ycombinator.com&sz=32" alt="YC"> &#x1F4E2; Garry Tan &mdash; CEO de Y Combinator</div>
+      <div class="featured-label"><span class="featured-logo" style="background:#F26522;">Y</span> &#x1F4E2; Garry Tan &mdash; CEO de Y Combinator</div>
       <h3>"El 25% de las startups de YC tienen el 95% de su codigo escrito por IA"</h3>
       <div class="featured-body">
         <p>En Startup School 2026, Garry Tan introdujo el concepto de <strong>"AGI personal"</strong>: agentes IA que corren en tu propia infraestructura, acumulan tu conocimiento con el tiempo, y multiplican dramaticamente tu capacidad de construir. Urgió a los fundadores a crear <strong>empresas "IA-nativas"</strong> en lugar de simplemente adoptar herramientas IA.</p>
@@ -968,7 +971,7 @@
     <div class="news-grid">
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=ycombinator.com&sz=32" alt="YC">YC W26</div>
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><span class="card-logo" style="background:#F26522;">Y</span>YC W26</div>
         <h3>Batch W26: 214 empresas, la mas fuerte de la historia</h3>
         <div class="card-body">
           <p><strong>214 startups</strong> en 9 categorias. El 60% construye productos IA-nativos. <strong>14 empresas</strong> alcanzaron $1M ARR antes del Demo Day. Destacan <strong>Hex Security</strong> (penetration testing IA, $1M ARR en 8 semanas) y <strong>GrazeMate</strong> (drones autonomos para ganado, favorita de los VCs).</p>
@@ -980,7 +983,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=ycombinator.com&sz=32" alt="YC">YC S26</div>
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><span class="card-logo" style="background:#F26522;">Y</span>YC S26</div>
         <h3>Batch S26: 208 empresas apuestan por agentes, robotica y deep tech</h3>
         <div class="card-body">
           <p>Desde data centers flotantes y semiconductores de diamante hasta robots y redes de satelites. <strong>Waddle Labs</strong> (Claude Code para robotica) y <strong>TovenAI</strong> (agentes IA para compliance financiero) destacan. Al menos 2 startups alcanzaron valoraciones de <strong>$175M+</strong>.</p>
@@ -992,7 +995,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=ycombinator.com&sz=32" alt="YC">YC Stats</div>
+        <div class="card-source" style="background:rgba(253,203,110,0.15);color:var(--accent-4);"><span class="card-logo" style="background:#F26522;">Y</span>YC Stats</div>
         <h3>YC en numeros: 931 startups IA financiadas</h3>
         <div class="card-body">
           <p>YC ha financiado <strong>5,668 empresas</strong> con un valor combinado de <strong>$600B+</strong>, incluyendo 82 unicornios y 17 IPOs. Entre enero 2025 y septiembre 2026, <strong>471 empresas YC cerraron rondas</strong> por $13.3B. Las empresas IA de YC crecen 10-20% por semana, vs 2-4% historico.</p>
@@ -1017,7 +1020,7 @@
     <div class="news-grid">
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=x.com&sz=32" alt="X">Viral</div>
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><span class="card-logo" style="background:#000;">X</span>Viral</div>
         <h3>Andrej Karpathy se une a Anthropic: 6.2M views en 24h</h3>
         <div class="card-body">
           <p>El anuncio de <strong>Andrej Karpathy</strong> (ex-director de IA en Tesla, co-fundador de OpenAI) de que se unia a <strong>Anthropic</strong> en mayo 2026 genero 6.2 millones de visualizaciones en X en solo 24 horas. Demostro que X sigue siendo el canal mas rapido para noticias del mercado IA.</p>
@@ -1029,7 +1032,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=fortune.com&sz=32" alt="Fortune">Viral</div>
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><span class="card-logo" style="background:#003DA5;">F</span>Viral</div>
         <h3>OpenClaw se hace viral: el creador se une a OpenAI</h3>
         <div class="card-body">
           <p><strong>OpenClaw</strong>, un asistente IA agentico open-source creado por Peter Steinberger, se hizo viral en X y recibio elogios de Sam Altman. <strong>Fortune</strong> le dedico un articulo completo. En febrero 2026, Steinberger anuncio que se unia a OpenAI para llevar agentes IA al publico general.</p>
@@ -1041,7 +1044,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=reuters.com&sz=32" alt="Reuters">Debate</div>
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><span class="card-logo" style="background:#FF8000;">R</span>Debate</div>
         <h3>La controversia de Grok: imagenes generadas de menores</h3>
         <div class="card-body">
           <p>En enero 2026, <strong>Reuters</strong> revelo que <strong>Grok</strong> (xAI de Elon Musk) habia generado imagenes explicitas de menores sin que Musk lo supiera, desatando un intenso debate sobre etica IA y responsabilidad legal. El incidente llevo a demandas judiciales y nuevas regulaciones.</p>
@@ -1053,7 +1056,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=x.com&sz=32" alt="X">Tendencia</div>
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><span class="card-logo" style="background:#000;">X</span>Tendencia</div>
         <h3>"Vibe coding": cuando un prompt se convierte en una app</h3>
         <div class="card-body">
           <p>Los demos de <strong>vibe coding</strong> de Ammaar Reshi &mdash; donde un prompt se convierte en una app desplegada en minutos &mdash; se hicieron virales en X. La cuenta <strong>@fofrAI</strong> comparte experimentos diarios con modelos generativos, actuando como explorador de tendencias. <em>"La nueva competencia no es Humanos vs IA. Es Humanos con IA vs todos los demas."</em></p>
@@ -1065,7 +1068,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=x.com&sz=32" alt="X">Debate</div>
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><span class="card-logo" style="background:#000;">X</span>Debate</div>
         <h3>Cluely: la startup que dijo "haz trampa en todo"</h3>
         <div class="card-body">
           <p><strong>Cluely</strong> lanzo con una campana provocadora de <em>"cheat on everything"</em> que genero atencion masiva y controversia en X. Luego pivoteo a un asistente IA para reuniones. El caso se convirtio en ejemplo de como el marketing controversial puede lanzar una startup, pero tambien destruirla.</p>
@@ -1077,7 +1080,7 @@
       </div>
 
       <div class="news-card fade-in">
-        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=x.com&sz=32" alt="X">VC Talk</div>
+        <div class="card-source" style="background:rgba(116,185,255,0.15);color:var(--accent-6);"><span class="card-logo" style="background:#000;">X</span>VC Talk</div>
         <h3>"La era de los wrappers se acabo": los VCs exigen ejecucion</h3>
         <div class="card-body">
           <p><em>"Hace dos anos podias entrar a una reunion con un VC diciendo 'estamos construyendo con gen AI' y salir con un term sheet. Esa era se acabo."</em> Los inversores en 2026 exigen <strong>ejecucion, traccion y revenue</strong>, no demos. El <strong>founder-led sales</strong> es ahora innegociable para levantar rondas.</p>
