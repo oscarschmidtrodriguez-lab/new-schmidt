@@ -47,7 +47,7 @@ def create_app(config=None):
         def _backup():
             db.backup_diario_si_toca(app)
 
-    from . import clientes, demo, eventos, filtros, flota, panel
+    from . import ajustes, clientes, demo, eventos, filtros, flota, panel, presupuestos
 
     filtros.init_app(app)
     demo.register(app)
@@ -56,4 +56,6 @@ def create_app(config=None):
     app.register_blueprint(flota.bp)
     app.register_blueprint(clientes.bp)
     app.register_blueprint(eventos.bp)
+    app.register_blueprint(presupuestos.bp)
+    app.register_blueprint(ajustes.bp)
     return app

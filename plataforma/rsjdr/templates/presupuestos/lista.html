@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Presupuestos{% endblock %}
+{% block content %}
+<div class="cabecera"><h1>Presupuestos</h1></div>
+<div class="pestanas">
+  <a href="?" class="{{ 'activo' if not filtro }}">Todos</a>
+  {% for k, label in ESTADOS.items() %}
+  <a href="?estado={{ k }}" class="{{ 'activo' if filtro == k }}">{{ label }}</a>
+  {% endfor %}
+</div>
+{% if filas %}
+<table class="tabla">
+  <thead><tr><th>Número</th><th>Evento</th><th>Cliente</th><th>Fecha evento</th><th class="num">Total</th><th class="num">Margen</th><th>Estado</th></tr></thead>
+  <tbody>
+  {% for f in filas %}
+    <tr>
+      <td class="mono"><a href="{{ url_for('presupuestos.detalle', presupuesto_id=f.p.id) }}">{{ f.p.numero }}</a></td>
+      <td>{{ f.e.nombre }}</td>
+      <td>{{ f.e.cliente_nombre or '—' }}</td>
+      <td>{{ f.e.fecha_inicio|fecha }}</td>
+      <td class="num">{{ f.t.total|euros2 }}</td>
+      <td class="num">{{ f.t.margen_pct|numero }} %</td>
+      <td><span class="estado estado-p-{{ f.p.estado }}">{{ ESTADOS[f.p.estado] }}</span></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="vacio">No hay presupuestos{% if filtro %} en este estado{% endif %}. Se generan desde la ficha de cada evento.</p>
+{% endif %}
+{% endblock %}

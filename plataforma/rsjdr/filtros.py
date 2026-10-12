@@ -1,6 +1,10 @@
 """Etiquetas y formatos para las plantillas."""
 from datetime import date
 
+from jinja2 import Undefined
+
+from .numeros import para_input
+
 ESTADO_EVENTO = {
     "presupuesto": "Presupuesto",
     "confirmado": "Confirmado",
@@ -39,6 +43,23 @@ def euros(valor):
     return f"{texto} €"
 
 
+def euros2(valor):
+    """1234.5 -> «1.234,50 €»"""
+    if valor is None:
+        return ""
+    texto = f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    return f"{texto} €"
+
+
+def numero(valor):
+    """Cantidades: sin decimales si es entero, con coma decimal si no."""
+    if valor is None:
+        return ""
+    if float(valor).is_integer():
+        return f"{int(valor):,}".replace(",", ".")
+    return f"{valor:g}".replace(".", ",")
+
+
 def km(valor):
     return f"{valor or 0:,}".replace(",", ".") + " km"
 
@@ -47,6 +68,9 @@ def init_app(app):
     app.jinja_env.filters.update(
         fecha=fecha,
         euros=euros,
+        euros2=euros2,
+        numero=numero,
+        input_num=lambda v: "" if isinstance(v, Undefined) else para_input(v),
         km=km,
         estado_evento=lambda v: ESTADO_EVENTO.get(v, v),
         tipo_evento=lambda v: TIPO_EVENTO.get(v, v),

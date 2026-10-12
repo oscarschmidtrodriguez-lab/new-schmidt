@@ -8,6 +8,7 @@
 
 <div class="kpis">
   <div class="kpi"><span class="kpi-valor">{{ ocupacion }}%</span><span class="kpi-txt">ocupación firme de la flota este mes</span></div>
+  <a class="kpi" href="{{ url_for('presupuestos.lista', estado='enviado') }}"><span class="kpi-valor">{{ pendientes_total|euros }}</span><span class="kpi-txt">en {{ num_pendientes }} presupuesto{{ 's' if num_pendientes != 1 }} enviado{{ 's' if num_pendientes != 1 }}, pendientes de respuesta (sin IVA)</span></a>
   <div class="kpi"><span class="kpi-valor">{{ flota.get('operativo', 0) }}</span><span class="kpi-txt">coches operativos</span></div>
   <div class="kpi {{ 'kpi-alerta' if flota.get('taller') }}"><span class="kpi-valor">{{ flota.get('taller', 0) }}</span><span class="kpi-txt">en taller</span></div>
   <div class="kpi {{ 'kpi-alerta' if alertas }}"><span class="kpi-valor">{{ alertas|length }}</span><span class="kpi-txt">alertas abiertas</span></div>

@@ -14,9 +14,11 @@
       {% set ep = request.endpoint or '' %}
       <a href="{{ url_for('panel.inicio') }}" class="{{ 'activo' if ep.startswith('panel') }}">Panel</a>
       <a href="{{ url_for('eventos.lista') }}" class="{{ 'activo' if ep.startswith('eventos') }}">Eventos</a>
+      <a href="{{ url_for('presupuestos.lista') }}" class="{{ 'activo' if ep.startswith('presupuestos') }}">Presupuestos</a>
       <a href="{{ url_for('flota.calendario') }}" class="{{ 'activo' if ep == 'flota.calendario' }}">Calendario flota</a>
       <a href="{{ url_for('flota.lista') }}" class="{{ 'activo' if ep.startswith('flota') and ep != 'flota.calendario' }}">Flota</a>
       <a href="{{ url_for('clientes.lista') }}" class="{{ 'activo' if ep.startswith('clientes') }}">Clientes</a>
+      <a href="{{ url_for('ajustes.index') }}" class="{{ 'activo' if ep.startswith('ajustes') }}">Tarifas</a>
     </nav>
     <form method="post" action="{{ url_for('auth.logout') }}" class="salir">
       <input type="hidden" name="_csrf" value="{{ csrf_token() }}">

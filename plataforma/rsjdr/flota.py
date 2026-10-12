@@ -7,6 +7,7 @@ from .auth import login_required
 from .db import get_db
 from .disponibilidad import ESTADOS_FIRMES, eventos_afectados_por_vehiculo, reservas_entre
 from .filtros import CATEGORIA_VEHICULO, ESTADO_VEHICULO
+from .numeros import leer_numero
 
 bp = Blueprint("flota", __name__, url_prefix="/flota")
 
@@ -19,13 +20,6 @@ def _get_vehiculo(db, vehiculo_id):
     if v is None:
         abort(404)
     return v
-
-
-def _numero(valor, tipo, defecto=0):
-    try:
-        return tipo((valor or "").replace(",", ".")) if valor not in (None, "") else defecto
-    except ValueError:
-        return None
 
 
 @bp.route("/")
@@ -54,9 +48,10 @@ def formulario(vehiculo_id=None):
             "nombre": (f.get("nombre") or "").strip(),
             "matricula": (f.get("matricula") or "").strip().upper() or None,
             "categoria": f.get("categoria"),
-            "tarifa_dia": _numero(f.get("tarifa_dia"), float),
-            "fianza": _numero(f.get("fianza"), float),
-            "km_actuales": _numero(f.get("km_actuales"), int),
+            "tarifa_dia": leer_numero(f.get("tarifa_dia"), float),
+            "fianza": leer_numero(f.get("fianza"), float),
+            "coste_dia": leer_numero(f.get("coste_dia"), float),
+            "km_actuales": leer_numero(f.get("km_actuales"), int),
             "estado": f.get("estado"),
             "notas": (f.get("notas") or "").strip() or None,
         }
@@ -67,7 +62,7 @@ def formulario(vehiculo_id=None):
             errores.append("Categoría no válida.")
         if datos["estado"] not in ESTADO_VEHICULO:
             errores.append("Estado no válido.")
-        for campo in ("tarifa_dia", "fianza", "km_actuales"):
+        for campo in ("tarifa_dia", "coste_dia", "fianza", "km_actuales"):
             if datos[campo] is None or datos[campo] < 0:
                 errores.append(f"«{campo.replace('_', ' ')}» debe ser un número positivo.")
         if datos["matricula"]:

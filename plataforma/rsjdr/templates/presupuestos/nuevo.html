@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Nuevo presupuesto{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <div>
+    <h1>Nuevo presupuesto</h1>
+    <p class="sub"><a href="{{ url_for('eventos.detalle', evento_id=evento.id) }}">{{ evento.nombre }}</a>
+      · {{ evento.fecha_inicio|fecha }}{% if dias > 1 %} → {{ evento.fecha_fin|fecha }}{% endif %} ({{ dias }} día{{ 's' if dias != 1 }})
+      {% if evento.ciudad %} · {{ evento.ciudad }}{% endif %}</p>
+  </div>
+</div>
+
+<form method="post" class="tarjeta pasos-presupuesto">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+
+  <fieldset>
+    <legend>1 · Coches</legend>
+    {% if vehiculos %}
+    <ul class="lista-simple">
+      {% for v in vehiculos %}
+      <li><span>{{ v.nombre }}</span><span class="apagado">{{ dias }} × {{ v.tarifa_dia|euros }} = <strong>{{ (dias * v.tarifa_dia)|euros }}</strong></span></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="msg msg-aviso">Este evento no tiene coches reservados.
+      <a href="{{ url_for('eventos.detalle', evento_id=evento.id) }}">Resérvalos primero</a> para que entren en el presupuesto.</p>
+    {% endif %}
+  </fieldset>
+
+  <fieldset>
+    <legend>2 · Transporte</legend>
+    <div class="fila">
+      <label>Km solo ida desde {{ ajustes.base_ciudad or 'la base' }}
+        <input name="km_ida" inputmode="decimal" value="{{ km_ida|input_num }}" placeholder="p. ej. 620">
+      </label>
+      <label>Camiones
+        <input name="camiones" type="number" min="0" value="{{ camiones }}">
+      </label>
+    </div>
+    <p class="nota">
+      {% if km_recordado %}Distancia a {{ evento.ciudad }} recordada de presupuestos anteriores.{% elif evento.ciudad %}La distancia a {{ evento.ciudad }} se recordará para la próxima vez.{% endif %}
+      Se calcula ida y vuelta a {{ ajustes.transporte_precio_km|euros2 }}/km por camión ({{ ajustes.coches_por_camion }} coche{{ 's' if ajustes.coches_por_camion != 1 }} por camión).
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend>3 · Personal</legend>
+    <table class="tabla compacta">
+      <thead><tr><th>Rol</th><th>Personas</th><th>Jornadas</th><th class="num">Tarifa/jornada</th></tr></thead>
+      <tbody>
+      {% for rol, label in ROLES.items() %}
+        <tr>
+          <td>{{ label }}</td>
+          <td><input name="n_{{ rol }}" type="number" min="0" value="0" class="corto"></td>
+          <td><input name="j_{{ rol }}" type="number" min="0" step="0.5" value="{{ dias }}" class="corto"></td>
+          <td class="num">{{ tarifas[rol].precio_jornada|euros }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </fieldset>
+
+  <div class="acciones">
+    <button type="submit" class="btn">Generar presupuesto</button>
+    <a href="{{ url_for('eventos.detalle', evento_id=evento.id) }}">Cancelar</a>
+  </div>
+  <p class="nota">Después podrás retocar cualquier línea, añadir extras y aplicar descuento.
+    Las tarifas se cambian en <a href="{{ url_for('ajustes.index') }}">Tarifas</a>.</p>
+</form>
+{% endblock %}

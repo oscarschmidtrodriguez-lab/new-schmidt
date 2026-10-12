@@ -32,5 +32,6 @@ def test_paginas_cargan(client, crear):
     e = crear.evento("Feria", "2026-11-10", "2026-11-12")
     for url in ("/", "/flota/", f"/flota/{v}", "/flota/calendario?mes=2026-11",
                 "/eventos/", f"/eventos/{e}", "/clientes/", "/clientes/nuevo",
-                "/eventos/nuevo", "/flota/nuevo"):
+                "/eventos/nuevo", "/flota/nuevo", "/tarifas/", "/presupuestos/",
+                f"/presupuestos/nuevo/{e}"):
         assert client.get(url).status_code == 200, url

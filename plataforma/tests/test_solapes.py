@@ -99,7 +99,7 @@ def test_panel_muestra_alerta_si_coche_pasa_a_taller(client, crear, app):
     reservar(client, e, v)
     r = client.post(f"/flota/{v}/editar", data={
         "nombre": "CUPRA DTM", "categoria": "competicion", "estado": "taller",
-        "tarifa_dia": "1200", "fianza": "5000", "km_actuales": "15000",
+        "tarifa_dia": "1.200", "coste_dia": "380", "fianza": "5.000", "km_actuales": "15.000",
     }, follow_redirects=True)
     assert "Busca sustituto" in r.get_data(as_text=True)
     panel = client.get("/").get_data(as_text=True)

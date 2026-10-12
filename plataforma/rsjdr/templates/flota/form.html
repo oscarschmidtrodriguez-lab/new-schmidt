@@ -14,9 +14,10 @@
       {% endfor %}
     </select>
   </label>
-  <label>Tarifa por día (€) <input name="tarifa_dia" inputmode="decimal" value="{{ v.tarifa_dia if v.tarifa_dia is not none else '' }}"></label>
-  <label>Fianza (€) <input name="fianza" inputmode="decimal" value="{{ v.fianza if v.fianza is not none else '' }}"></label>
-  <label>Km actuales <input name="km_actuales" inputmode="numeric" value="{{ v.km_actuales if v.km_actuales is not none else '' }}"></label>
+  <label>Tarifa por día (€) <input name="tarifa_dia" inputmode="decimal" value="{{ v.tarifa_dia|input_num }}"></label>
+  <label>Tu coste por día (€) <input name="coste_dia" inputmode="decimal" value="{{ v.coste_dia|input_num }}" placeholder="seguro, amortización, preparación"></label>
+  <label>Fianza (€) <input name="fianza" inputmode="decimal" value="{{ v.fianza|input_num }}"></label>
+  <label>Km actuales <input name="km_actuales" inputmode="numeric" value="{{ v.km_actuales|input_num }}"></label>
   <label>Estado
     <select name="estado">
       {% for k, label in ESTADO_VEHICULO.items() %}

@@ -12,6 +12,7 @@
 <div class="kpis">
   <div class="kpi"><span class="estado estado-{{ vehiculo.estado }}">{{ vehiculo.estado|estado_vehiculo }}</span><span class="kpi-txt">estado</span></div>
   <div class="kpi"><span class="kpi-valor">{{ vehiculo.tarifa_dia|euros }}</span><span class="kpi-txt">tarifa por día</span></div>
+  <div class="kpi"><span class="kpi-valor">{{ vehiculo.coste_dia|euros }}</span><span class="kpi-txt">tu coste por día</span></div>
   <div class="kpi"><span class="kpi-valor">{{ vehiculo.fianza|euros }}</span><span class="kpi-txt">fianza</span></div>
   <div class="kpi"><span class="kpi-valor">{{ vehiculo.km_actuales|km }}</span><span class="kpi-txt">kilómetros</span></div>
 </div>

@@ -6,10 +6,10 @@ import click
 from .db import get_db
 
 COCHES = [
-    ("KTM X-BOW GT", "competicion", 1100, 6000, 18400),
-    ("Chevrolet Corvette C8", "deportivo", 850, 4000, 32150),
-    ("Honda NSX", "exotico", 950, 5000, 27800),
-    ("CUPRA León DTM", "competicion", 1200, 6000, 9600),
+    ("KTM X-BOW GT", "competicion", 1100, 6000, 18400, 320),
+    ("Chevrolet Corvette C8", "deportivo", 850, 4000, 32150, 240),
+    ("Honda NSX", "exotico", 950, 5000, 27800, 280),
+    ("CUPRA León DTM", "competicion", 1200, 6000, 9600, 380),
 ]
 
 
@@ -22,11 +22,11 @@ def register(app):
             raise click.ClickException("Ya hay coches en la base de datos; no cargo la demo.")
 
         ids = []
-        for nombre, cat, tarifa, fianza, km in COCHES:
+        for nombre, cat, tarifa, fianza, km, coste in COCHES:
             cur = db.execute(
-                "INSERT INTO vehiculos (nombre, categoria, tarifa_dia, fianza, km_actuales)"
-                " VALUES (?, ?, ?, ?, ?)",
-                (nombre, cat, tarifa, fianza, km),
+                "INSERT INTO vehiculos (nombre, categoria, tarifa_dia, fianza, km_actuales, coste_dia)"
+                " VALUES (?, ?, ?, ?, ?, ?)",
+                (nombre, cat, tarifa, fianza, km, coste),
             )
             ids.append(cur.lastrowid)
         cli = db.execute(

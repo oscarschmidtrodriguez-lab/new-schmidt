@@ -7,6 +7,7 @@ from .auth import login_required
 from .db import get_db
 from .disponibilidad import ESTADOS_ACTIVOS, comprobar_evento
 from .flota import ocupacion_mes
+from .presupuestos import cargar
 
 bp = Blueprint("panel", __name__)
 
@@ -46,6 +47,12 @@ def inicio():
             if sin_coches:
                 alertas.append({"evento": e, "texto": "Confirmado y sin coches asignados.", "nivel": "aviso"})
 
+    pendientes = [
+        cargar(db, r["id"])
+        for r in db.execute("SELECT id FROM presupuestos WHERE estado = 'enviado'")
+    ]
+    pendientes_total = sum(t["base"] for _, _, t in pendientes)
+
     _, _, ocupacion = ocupacion_mes(db, hoy.replace(day=1))
     flota = db.execute(
         "SELECT estado, COUNT(*) AS n FROM vehiculos GROUP BY estado"
@@ -53,4 +60,5 @@ def inicio():
     return render_template(
         "panel.html", proximos=proximos, alertas=alertas, ocupacion=ocupacion,
         flota={r["estado"]: r["n"] for r in flota},
+        num_pendientes=len(pendientes), pendientes_total=pendientes_total,
     )

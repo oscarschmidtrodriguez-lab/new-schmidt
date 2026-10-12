@@ -23,6 +23,31 @@ Gestión de flota de coches exóticos y deportivos para ferias y eventos corpora
   días de logística, solapes en rojo y coches en taller. Muestra el % de ocupación firme.
 - **Panel**: alertas abiertas y eventos de los próximos 45 días.
 
+## Qué hace (fase 2: presupuesto automático)
+
+- Desde la ficha del evento, **«Generar presupuesto»** en tres pasos:
+  1. **Coches** reservados × días de evento × tarifa del coche.
+  2. **Transporte** en camión portavehículos: km de ida × 2 × nº de camiones × €/km.
+     Los camiones se calculan solos (coches ÷ coches por camión) y la distancia a cada
+     ciudad se **recuerda** para la próxima vez.
+  3. **Personal**: personas × jornadas × tarifa del rol (conductor, azafata, camarero, técnico).
+- Después puedes retocar cualquier línea, añadir **extras** (vinilado, seguro adicional,
+  dietas…), aplicar **descuento** y cambiar IVA o validez. Los números se escriben al
+  estilo español: «1.100», «2,5».
+- **Margen real** visible solo para ti: cada línea lleva su coste interno (coste/día del
+  coche, coste/km del camión, coste/jornada del personal). Avisa si un coche no tiene coste.
+- **Aviso antes de enviar** si el cliente aceptara y algún coche ya está comprometido
+  en firme en otro evento.
+- **Propuesta para el cliente** con tu marca, lista para «Imprimir / Guardar como PDF»
+  (A4). Nunca muestra costes ni márgenes. Incluye fianzas y condiciones.
+- Estados: borrador → enviado → aceptado / rechazado. Al marcar **aceptado**, el evento
+  se **confirma solo** (si no hay solapes) y sus coches quedan bloqueados en firme.
+- Numeración correlativa por año: P-2026-0001, P-2026-0002…
+- El panel muestra el importe de los presupuestos enviados pendientes de respuesta.
+- **Tarifas** (menú superior): €/km, coches por camión, tarifas y costes de personal,
+  IVA, validez, condiciones y datos de la empresa. Los valores iniciales son de
+  ejemplo: **cámbialos por los tuyos** antes del primer presupuesto real.
+
 ## Seguridad y datos
 
 - Acceso **solo por invitación** (no hay registro público). Protección CSRF en todos

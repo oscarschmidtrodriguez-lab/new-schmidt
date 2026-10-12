@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propuesta {{ p.numero }} · {{ ajustes.empresa_nombre }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='propuesta.css') }}">
+</head>
+<body>
+  <div class="barra no-print">
+    <a href="{{ url_for('presupuestos.detalle', presupuesto_id=p.id) }}">← Volver al presupuesto</a>
+    <button onclick="window.print()">Imprimir / Guardar como PDF</button>
+  </div>
+
+  <article class="hoja">
+    <header>
+      <div class="marca">{{ ajustes.empresa_nombre }}</div>
+      <div class="empresa">
+        {% if ajustes.empresa_cif %}CIF {{ ajustes.empresa_cif }}<br>{% endif %}
+        {% if ajustes.empresa_email %}{{ ajustes.empresa_email }}<br>{% endif %}
+        {% if ajustes.empresa_telefono %}{{ ajustes.empresa_telefono }}<br>{% endif %}
+        {% if ajustes.empresa_web %}{{ ajustes.empresa_web }}{% endif %}
+      </div>
+    </header>
+
+    <section class="titulo">
+      <p class="eyebrow">Propuesta {{ p.numero }}</p>
+      <h1>{{ evento.nombre }}</h1>
+      <p class="meta">
+        {{ evento.fecha_inicio|fecha }}{% if evento.fecha_fin != evento.fecha_inicio %} – {{ evento.fecha_fin|fecha }}{% endif %}
+        {% if evento.venue or evento.ciudad %} · {{ evento.venue or '' }}{% if evento.ciudad %}{{ ', ' if evento.venue }}{{ evento.ciudad }}{% endif %}{% endif %}
+      </p>
+    </section>
+
+    <section class="datos">
+      <div>
+        <p class="etq">Para</p>
+        <p>{% if evento.cliente_empresa %}<strong>{{ evento.cliente_empresa }}</strong><br>{% endif %}
+           {{ evento.cliente_nombre or '' }}
+           {% if evento.cliente_cif %}<br>CIF {{ evento.cliente_cif }}{% endif %}
+           {% if evento.cliente_email %}<br>{{ evento.cliente_email }}{% endif %}</p>
+      </div>
+      <div>
+        <p class="etq">Emitida</p><p>{{ emitido.strftime('%d/%m/%Y') }}</p>
+        <p class="etq">Válida hasta</p><p>{{ valido_hasta.strftime('%d/%m/%Y') }}</p>
+      </div>
+    </section>
+
+    {% if vehiculos %}
+    <section>
+      <p class="etq">Vehículos</p>
+      <p class="coches">{% for v in vehiculos %}{{ v.nombre }}{{ ' · ' if not loop.last }}{% endfor %}</p>
+    </section>
+    {% endif %}
+
+    <table class="lineas">
+      <thead><tr><th>Concepto</th><th class="num">Cant.</th><th class="num">Precio</th><th class="num">Importe</th></tr></thead>
+      <tbody>
+      {% for l in lineas %}
+        <tr><td>{{ l.concepto }}</td><td class="num">{{ l.cantidad|numero }}</td><td class="num">{{ l.precio|euros2 }}</td><td class="num">{{ (l.cantidad * l.precio)|euros2 }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <table class="totales">
+      {% if t.descuento %}
+      <tr><td>Subtotal</td><td class="num">{{ t.subtotal|euros2 }}</td></tr>
+      <tr><td>Descuento ({{ p.descuento_pct|numero }} %)</td><td class="num">− {{ t.descuento|euros2 }}</td></tr>
+      {% endif %}
+      <tr><td>Base imponible</td><td class="num">{{ t.base|euros2 }}</td></tr>
+      <tr><td>IVA ({{ p.iva_pct|numero }} %)</td><td class="num">{{ t.iva|euros2 }}</td></tr>
+      <tr class="total"><td>Total</td><td class="num">{{ t.total|euros2 }}</td></tr>
+    </table>
+
+    {% if fianzas %}
+    <p class="fianza">Fianza reembolsable por los vehículos: <strong>{{ fianzas|euros }}</strong> (no incluida en el total).</p>
+    {% endif %}
+
+    {% if p.notas %}<section class="notas"><p class="etq">Notas</p><p>{{ p.notas }}</p></section>{% endif %}
+    {% if ajustes.condiciones %}<footer><p class="etq">Condiciones</p><p>{{ ajustes.condiciones }}</p></footer>{% endif %}
+  </article>
+</body>
+</html>

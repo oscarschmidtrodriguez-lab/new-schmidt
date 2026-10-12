@@ -6,6 +6,7 @@ from .auth import login_required
 from .db import get_db
 from .disponibilidad import comprobar_evento, comprobar_reserva, ventana
 from .filtros import ESTADO_EVENTO, TIPO_EVENTO
+from .presupuestos import resumen_por_evento
 
 bp = Blueprint("eventos", __name__, url_prefix="/eventos")
 
@@ -171,6 +172,7 @@ def detalle(evento_id):
     return render_template(
         "eventos/detalle.html", evento=evento, filas=filas, candidatos=candidatos,
         bloqueos=bloqueos, avisos=avisos, dias=dias, margen=MARGEN_DEFECTO,
+        presupuestos=resumen_por_evento(db, evento_id),
     )
 
 

@@ -86,6 +86,29 @@
   {% endif %}
 </section>
 
+<section>
+  <h2>Presupuestos</h2>
+  {% if presupuestos %}
+  <table class="tabla">
+    <thead><tr><th>Número</th><th>Creado</th><th class="num">Total</th><th class="num">Margen</th><th>Estado</th></tr></thead>
+    <tbody>
+    {% for x in presupuestos %}
+      <tr>
+        <td class="mono"><a href="{{ url_for('presupuestos.detalle', presupuesto_id=x.p.id) }}">{{ x.p.numero }}</a></td>
+        <td>{{ x.p.created_at|fecha }}</td>
+        <td class="num">{{ x.t.total|euros2 }}</td>
+        <td class="num">{{ x.t.margen_pct|numero }} %</td>
+        <td><span class="estado estado-p-{{ x.p.estado }}">{{ x.p.estado|capitalize }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  {% if evento.estado != 'cancelado' %}
+  <p><a class="btn {{ 'btn-sec' if presupuestos }}" href="{{ url_for('presupuestos.nuevo', evento_id=evento.id) }}">{{ 'Nueva versión del presupuesto' if presupuestos else 'Generar presupuesto' }}</a></p>
+  {% endif %}
+</section>
+
 {% if evento.notas %}
 <section><h2>Notas</h2><p class="notas">{{ evento.notas }}</p></section>
 {% endif %}

@@ -1,0 +1,48 @@
+/* Propuesta al cliente: pensada para pantalla e impresión en A4. */
+:root { --tinta: #18181a; --suave: #77746e; --linea: #e6e2d9; --oro: #a8843f; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #ecebe7; color: var(--tinta); font: 14px/1.55 Georgia, "Times New Roman", serif; }
+
+.barra { display: flex; justify-content: space-between; align-items: center; max-width: 210mm; margin: 1rem auto; padding: 0 1rem; font-family: -apple-system, Segoe UI, sans-serif; }
+.barra a { color: var(--tinta); }
+.barra button { background: var(--tinta); color: #fff; border: 0; border-radius: 6px; padding: 0.6rem 1.1rem; font: 600 14px -apple-system, Segoe UI, sans-serif; cursor: pointer; }
+
+.hoja { background: #fff; max-width: 210mm; min-height: 297mm; margin: 0 auto 2rem; padding: 20mm 18mm; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--tinta); padding-bottom: 6mm; }
+.marca { font: 700 20px/1 -apple-system, Segoe UI, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
+.empresa { text-align: right; font-size: 11px; color: var(--suave); font-family: -apple-system, Segoe UI, sans-serif; }
+
+.titulo { margin: 12mm 0 8mm; }
+.eyebrow, .etq { font: 600 10px -apple-system, Segoe UI, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--oro); margin: 0 0 1.5mm; }
+h1 { font-size: 28px; font-weight: 400; margin: 0 0 2mm; letter-spacing: -0.01em; }
+.meta { color: var(--suave); margin: 0; }
+
+.datos { display: grid; grid-template-columns: 1fr auto; gap: 10mm; margin-bottom: 8mm; }
+.datos p { margin: 0 0 3mm; }
+.coches { font-size: 16px; margin: 0 0 8mm; }
+
+table { width: 100%; border-collapse: collapse; }
+.lineas th { font: 600 10px -apple-system, Segoe UI, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--suave); text-align: left; border-bottom: 1px solid var(--tinta); padding: 2mm 0; }
+.lineas td { padding: 3mm 0; border-bottom: 1px solid var(--linea); vertical-align: top; }
+.num { text-align: right; white-space: nowrap; padding-left: 4mm !important; font-variant-numeric: tabular-nums; }
+
+.totales { width: 45%; margin: 6mm 0 0 auto; }
+.totales td { padding: 1.5mm 0; }
+.totales .total td { border-top: 2px solid var(--tinta); padding-top: 3mm; font-size: 18px; font-weight: 700; }
+
+.fianza { margin-top: 8mm; padding: 3mm 4mm; background: #faf7f0; border-left: 3px solid var(--oro); font-size: 13px; }
+.notas, footer { margin-top: 8mm; font-size: 12px; color: #444; white-space: pre-line; }
+footer { border-top: 1px solid var(--linea); padding-top: 4mm; }
+
+@media print {
+  @page { size: A4; margin: 0; }
+  body { background: #fff; }
+  .no-print { display: none; }
+  .hoja { box-shadow: none; margin: 0; max-width: none; }
+  tr { page-break-inside: avoid; }
+}
+@media (max-width: 640px) {
+  .hoja { padding: 8mm 6mm; }
+  .datos { grid-template-columns: 1fr; }
+  .totales { width: 100%; }
+}
