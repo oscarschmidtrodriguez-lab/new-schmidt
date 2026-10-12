@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar coche' if vehiculo_id else 'Nuevo coche' }}{% endblock %}
+{% block content %}
+<div class="cabecera"><h1>{{ 'Editar ' ~ vehiculo.nombre if vehiculo_id else 'Nuevo coche' }}</h1></div>
+{% set v = vehiculo or {} %}
+<form method="post" class="tarjeta formulario">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <label class="ancho">Nombre <input name="nombre" required value="{{ v.nombre or '' }}" placeholder="KTM X-BOW GT"></label>
+  <label>Matrícula <input name="matricula" value="{{ v.matricula or '' }}"></label>
+  <label>Categoría
+    <select name="categoria">
+      {% for k, label in CATEGORIA_VEHICULO.items() %}
+      <option value="{{ k }}" {{ 'selected' if v.categoria == k }}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Tarifa por día (€) <input name="tarifa_dia" inputmode="decimal" value="{{ v.tarifa_dia if v.tarifa_dia is not none else '' }}"></label>
+  <label>Fianza (€) <input name="fianza" inputmode="decimal" value="{{ v.fianza if v.fianza is not none else '' }}"></label>
+  <label>Km actuales <input name="km_actuales" inputmode="numeric" value="{{ v.km_actuales if v.km_actuales is not none else '' }}"></label>
+  <label>Estado
+    <select name="estado">
+      {% for k, label in ESTADO_VEHICULO.items() %}
+      <option value="{{ k }}" {{ 'selected' if (v.estado or 'operativo') == k }}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label class="ancho">Notas <textarea name="notas" rows="3">{{ v.notas or '' }}</textarea></label>
+  <div class="acciones ancho">
+    <button type="submit" class="btn">Guardar</button>
+    <a href="{{ url_for('flota.detalle', vehiculo_id=vehiculo_id) if vehiculo_id else url_for('flota.lista') }}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

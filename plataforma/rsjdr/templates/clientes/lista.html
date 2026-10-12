@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Clientes{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <h1>Clientes</h1>
+  <a class="btn" href="{{ url_for('clientes.formulario') }}">+ Nuevo cliente</a>
+</div>
+{% if clientes %}
+<table class="tabla">
+  <thead><tr><th>Nombre</th><th>Empresa</th><th>Email</th><th>Teléfono</th><th class="num">Eventos</th><th>Último</th></tr></thead>
+  <tbody>
+  {% for c in clientes %}
+    <tr>
+      <td><a href="{{ url_for('clientes.formulario', cliente_id=c.id) }}">{{ c.nombre }}</a></td>
+      <td>{{ c.empresa or '' }}</td>
+      <td>{% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}</td>
+      <td>{{ c.telefono or '' }}</td>
+      <td class="num">{{ c.num_eventos }}</td>
+      <td>{{ c.ultimo_evento|fecha }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="vacio">Aún no hay clientes.</p>
+{% endif %}
+{% endblock %}

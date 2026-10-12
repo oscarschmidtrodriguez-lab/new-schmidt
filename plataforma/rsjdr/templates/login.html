@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Acceso{% endblock %}
+{% block content %}
+<div class="login">
+  <div class="marca grande">RSJdR <span>Luxury</span></div>
+  <p class="sub">Operaciones de flota y eventos</p>
+  <form method="post" class="tarjeta">
+    <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+    <label>Email <input type="email" name="email" required autofocus autocomplete="username"></label>
+    <label>Contraseña <input type="password" name="password" required autocomplete="current-password"></label>
+    <button type="submit" class="btn">Entrar</button>
+  </form>
+  <p class="nota">Acceso solo por invitación.</p>
+</div>
+{% endblock %}

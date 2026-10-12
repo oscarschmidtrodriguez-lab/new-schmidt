@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}{{ vehiculo.nombre }}{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <div>
+    <h1>{{ vehiculo.nombre }}</h1>
+    <p class="sub">{{ vehiculo.categoria|categoria_vehiculo }}{% if vehiculo.matricula %} · <span class="mono">{{ vehiculo.matricula }}</span>{% endif %}</p>
+  </div>
+  <a class="btn btn-sec" href="{{ url_for('flota.formulario', vehiculo_id=vehiculo.id) }}">Editar</a>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><span class="estado estado-{{ vehiculo.estado }}">{{ vehiculo.estado|estado_vehiculo }}</span><span class="kpi-txt">estado</span></div>
+  <div class="kpi"><span class="kpi-valor">{{ vehiculo.tarifa_dia|euros }}</span><span class="kpi-txt">tarifa por día</span></div>
+  <div class="kpi"><span class="kpi-valor">{{ vehiculo.fianza|euros }}</span><span class="kpi-txt">fianza</span></div>
+  <div class="kpi"><span class="kpi-valor">{{ vehiculo.km_actuales|km }}</span><span class="kpi-txt">kilómetros</span></div>
+</div>
+{% if vehiculo.notas %}<p class="notas">{{ vehiculo.notas }}</p>{% endif %}
+
+<section>
+  <h2>Próximas reservas</h2>
+  {% if proximas %}
+  <table class="tabla">
+    <thead><tr><th>Sale</th><th>Vuelve</th><th>Evento</th><th>Estado</th></tr></thead>
+    <tbody>
+    {% for r in proximas %}
+      <tr>
+        <td>{{ r.salida|fecha }}</td><td>{{ r.regreso|fecha }}</td>
+        <td><a href="{{ url_for('eventos.detalle', evento_id=r.evento_id) }}">{{ r.evento_nombre }}</a></td>
+        <td><span class="estado estado-{{ r.estado }}">{{ r.estado|estado_evento }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="vacio">Sin reservas próximas.</p>{% endif %}
+</section>
+
+{% if pasadas %}
+<section>
+  <h2>Historial</h2>
+  <table class="tabla">
+    <thead><tr><th>Fechas</th><th>Evento</th><th>Estado</th></tr></thead>
+    <tbody>
+    {% for r in pasadas %}
+      <tr>
+        <td>{{ r.fecha_inicio|fecha }} → {{ r.fecha_fin|fecha }}</td>
+        <td><a href="{{ url_for('eventos.detalle', evento_id=r.evento_id) }}">{{ r.evento_nombre }}</a></td>
+        <td>{{ r.estado|estado_evento }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

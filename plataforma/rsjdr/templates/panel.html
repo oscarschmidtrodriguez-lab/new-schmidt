@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Panel{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <h1>Panel</h1>
+  <a class="btn" href="{{ url_for('eventos.formulario') }}">+ Nuevo evento</a>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><span class="kpi-valor">{{ ocupacion }}%</span><span class="kpi-txt">ocupación firme de la flota este mes</span></div>
+  <div class="kpi"><span class="kpi-valor">{{ flota.get('operativo', 0) }}</span><span class="kpi-txt">coches operativos</span></div>
+  <div class="kpi {{ 'kpi-alerta' if flota.get('taller') }}"><span class="kpi-valor">{{ flota.get('taller', 0) }}</span><span class="kpi-txt">en taller</span></div>
+  <div class="kpi {{ 'kpi-alerta' if alertas }}"><span class="kpi-valor">{{ alertas|length }}</span><span class="kpi-txt">alertas abiertas</span></div>
+</div>
+
+<section>
+  <h2>Requiere tu atención</h2>
+  {% if alertas %}
+  <ul class="alertas">
+    {% for a in alertas %}
+    <li class="alerta-{{ a.nivel }}">
+      <a href="{{ url_for('eventos.detalle', evento_id=a.evento.id) }}">{{ a.evento.nombre }}</a>
+      <span class="fecha">{{ a.evento.fecha_inicio|fecha }}</span> — {{ a.texto }}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="vacio">Todo en orden: sin solapes ni coches comprometidos.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Próximos 45 días</h2>
+  {% if proximos %}
+  <table class="tabla">
+    <thead><tr><th>Fechas</th><th>Evento</th><th>Cliente</th><th>Lugar</th><th>Coches</th><th>Estado</th></tr></thead>
+    <tbody>
+    {% for e in proximos %}
+      <tr>
+        <td class="nowrap">{{ e.fecha_inicio|fecha }}{% if e.fecha_fin != e.fecha_inicio %} → {{ e.fecha_fin|fecha }}{% endif %}</td>
+        <td><a href="{{ url_for('eventos.detalle', evento_id=e.id) }}">{{ e.nombre }}</a></td>
+        <td>{{ e.cliente_nombre or '—' }}</td>
+        <td>{{ e.venue or '' }}{% if e.ciudad %}{{ ', ' if e.venue }}{{ e.ciudad }}{% endif %}</td>
+        <td>{{ e.num_coches }}</td>
+        <td><span class="estado estado-{{ e.estado }}">{{ e.estado|estado_evento }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="vacio">No hay eventos en las próximas semanas.</p>
+  {% endif %}
+</section>
+{% endblock %}

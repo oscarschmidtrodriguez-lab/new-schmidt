@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar cliente' if cliente and cliente.id else 'Nuevo cliente' }}{% endblock %}
+{% block content %}
+{% set c = cliente or {} %}
+<div class="cabecera"><h1>{{ 'Editar cliente' if c.id else 'Nuevo cliente' }}</h1></div>
+<form method="post" class="tarjeta formulario">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <label>Persona de contacto <input name="nombre" required value="{{ c.nombre or '' }}"></label>
+  <label>Empresa <input name="empresa" value="{{ c.empresa or '' }}"></label>
+  <label>CIF <input name="cif" value="{{ c.cif or '' }}"></label>
+  <label>Email <input type="email" name="email" value="{{ c.email or '' }}"></label>
+  <label>Teléfono <input name="telefono" value="{{ c.telefono or '' }}"></label>
+  <label class="ancho">Notas <textarea name="notas" rows="3">{{ c.notas or '' }}</textarea></label>
+  <div class="acciones ancho">
+    <button type="submit" class="btn">Guardar</button>
+    <a href="{{ url_for('clientes.lista') }}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

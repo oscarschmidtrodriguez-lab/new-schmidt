@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}{{ evento.nombre }}{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <div>
+    <h1>{{ evento.nombre }}</h1>
+    <p class="sub">
+      {{ evento.tipo|tipo_evento }} ·
+      {{ evento.fecha_inicio|fecha }}{% if evento.fecha_fin != evento.fecha_inicio %} → {{ evento.fecha_fin|fecha }}{% endif %}
+      ({{ dias }} día{{ 's' if dias != 1 }})
+      {% if evento.venue or evento.ciudad %} · {{ evento.venue or '' }}{% if evento.ciudad %}{{ ', ' if evento.venue }}{{ evento.ciudad }}{% endif %}{% endif %}
+      {% if evento.cliente_nombre %} · {{ evento.cliente_nombre }}{% if evento.cliente_empresa %} ({{ evento.cliente_empresa }}){% endif %}{% endif %}
+    </p>
+  </div>
+  <a class="btn btn-sec" href="{{ url_for('eventos.formulario', evento_id=evento.id) }}">Editar</a>
+</div>
+
+<form method="post" action="{{ url_for('eventos.cambiar_estado', evento_id=evento.id) }}" class="estados">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  {% for k, label in ESTADO_EVENTO.items() %}
+  <button type="submit" name="estado" value="{{ k }}" class="paso {{ 'actual estado-' ~ k if evento.estado == k }}" {{ 'disabled' if evento.estado == k }}>{{ label }}</button>
+  {% endfor %}
+</form>
+
+{% if bloqueos or avisos %}
+<ul class="alertas">
+  {% for m in bloqueos %}<li class="alerta-error">{{ m }}</li>{% endfor %}
+  {% for m in avisos %}<li class="alerta-aviso">{{ m }}</li>{% endfor %}
+</ul>
+{% endif %}
+
+<section>
+  <h2>Coches reservados</h2>
+  {% if filas %}
+  <table class="tabla">
+    <thead><tr><th>Coche</th><th>Sale</th><th>Vuelve</th><th class="num">Tarifa/día</th><th></th></tr></thead>
+    <tbody>
+    {% for f in filas %}
+      <tr>
+        <td><a href="{{ url_for('flota.detalle', vehiculo_id=f.r.vehiculo_id) }}">{{ f.r.nombre }}</a>
+          {% if f.r.vehiculo_estado != 'operativo' %}<span class="estado estado-{{ f.r.vehiculo_estado }}">{{ f.r.vehiculo_estado|estado_vehiculo }}</span>{% endif %}</td>
+        <td>{{ f.salida|fecha }} <small class="apagado">({{ f.r.dias_antes }} d antes)</small></td>
+        <td>{{ f.regreso|fecha }} <small class="apagado">({{ f.r.dias_despues }} d después)</small></td>
+        <td class="num">{{ f.r.tarifa_dia|euros }}</td>
+        <td class="num">
+          <form method="post" action="{{ url_for('eventos.quitar_coche', evento_id=evento.id, reserva_id=f.r.id) }}">
+            <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+            <button type="submit" class="enlace peligro">Liberar</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="vacio">Todavía no hay coches en este evento.</p>
+  {% endif %}
+
+  {% if evento.estado not in ('finalizado', 'cancelado') %}
+  <form method="post" action="{{ url_for('eventos.anadir_coche', evento_id=evento.id) }}" class="tarjeta reservar">
+    <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+    <h3>Reservar un coche</h3>
+    {% if candidatos %}
+    <div class="candidatos">
+      {% for c in candidatos %}
+      <label class="candidato {{ 'bloqueado' if c.bloqueos else ('dudoso' if c.avisos else 'libre') }}">
+        <input type="radio" name="vehiculo_id" value="{{ c.v.id }}" {{ 'disabled' if c.bloqueos }} required>
+        <span class="nombre">{{ c.v.nombre }}</span>
+        <span class="precio">{{ c.v.tarifa_dia|euros }}/día</span>
+        <span class="motivo">
+          {% if c.bloqueos %}{{ c.bloqueos[0] }}{% elif c.avisos %}{{ c.avisos[0] }}{% else %}Libre en esas fechas{% endif %}
+        </span>
+      </label>
+      {% endfor %}
+    </div>
+    <div class="fila">
+      <label>Días antes (transporte/montaje) <input type="number" name="dias_antes" min="0" max="30" value="{{ margen }}"></label>
+      <label>Días después (recogida) <input type="number" name="dias_despues" min="0" max="30" value="{{ margen }}"></label>
+      <button type="submit" class="btn">Reservar</button>
+    </div>
+    <p class="nota">La disponibilidad de la lista se calcula con {{ margen }} día de margen; si cambias los días, se vuelve a comprobar al reservar.</p>
+    {% else %}
+    <p class="vacio">No hay más coches en la flota. <a href="{{ url_for('flota.formulario') }}">Añadir coche</a></p>
+    {% endif %}
+  </form>
+  {% endif %}
+</section>
+
+{% if evento.notas %}
+<section><h2>Notas</h2><p class="notas">{{ evento.notas }}</p></section>
+{% endif %}
+{% endblock %}
