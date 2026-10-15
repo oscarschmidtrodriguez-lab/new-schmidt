@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}RSJdR Luxury{% endblock %} · RSJdR Ops</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% if g.user %}
+  <header class="topbar">
+    <a class="marca" href="{{ url_for('panel.inicio') }}">RSJdR <span>Luxury</span></a>
+    <nav>
+      {% set ep = request.endpoint or '' %}
+      <a href="{{ url_for('panel.inicio') }}" class="{{ 'activo' if ep.startswith('panel') }}">Panel</a>
+      <a href="{{ url_for('eventos.lista') }}" class="{{ 'activo' if ep.startswith('eventos') }}">Eventos</a>
+      <a href="{{ url_for('presupuestos.lista') }}" class="{{ 'activo' if ep.startswith('presupuestos') }}">Presupuestos</a>
+      <a href="{{ url_for('flota.calendario') }}" class="{{ 'activo' if ep == 'flota.calendario' }}">Calendario flota</a>
+      <a href="{{ url_for('flota.lista') }}" class="{{ 'activo' if ep.startswith('flota') and ep != 'flota.calendario' }}">Flota</a>
+      <a href="{{ url_for('clientes.lista') }}" class="{{ 'activo' if ep.startswith('clientes') }}">Clientes</a>
+      <a href="{{ url_for('ajustes.index') }}" class="{{ 'activo' if ep.startswith('ajustes') }}">Tarifas</a>
+    </nav>
+    <form method="post" action="{{ url_for('auth.logout') }}" class="salir">
+      <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+      <button type="submit" class="enlace">Salir</button>
+    </form>
+  </header>
+  {% endif %}
+  <main>
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% if mensajes %}
+      <div class="mensajes">
+        {% for cat, m in mensajes %}<div class="msg msg-{{ cat }}">{{ m }}</div>{% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

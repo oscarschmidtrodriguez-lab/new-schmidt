@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Calendario de flota{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <div>
+    <h1>Calendario de flota</h1>
+    <p class="sub">Ocupación firme este mes: <strong>{{ ocupacion }}%</strong></p>
+  </div>
+  <div class="nav-mes">
+    <a href="?mes={{ anterior }}" aria-label="Mes anterior">‹</a>
+    <span>{{ titulo }}</span>
+    <a href="?mes={{ siguiente }}" aria-label="Mes siguiente">›</a>
+  </div>
+</div>
+
+<div class="leyenda">
+  <span><i class="c firme"></i>Confirmado</span>
+  <span><i class="c provisional"></i>Presupuesto (provisional)</span>
+  <span><i class="c firme logistica"></i>Transporte / montaje</span>
+  <span><i class="c conflicto"></i>Solape</span>
+  <span><i class="c taller"></i>En taller</span>
+</div>
+
+{% if filas %}
+<div class="gantt-scroll">
+<table class="gantt">
+  <thead>
+    <tr>
+      <th class="coche">Coche</th>
+      {% for d in dias %}
+      <th class="{{ 'finde' if d.weekday() >= 5 }} {{ 'hoy' if d == hoy }}">{{ d.day }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for f in filas %}
+    <tr>
+      <th class="coche"><a href="{{ url_for('flota.detalle', vehiculo_id=f.vehiculo.id) }}">{{ f.vehiculo.nombre }}</a></th>
+      {% for c in f.celdas %}
+      <td class="{{ c.clase }} {{ 'hoy' if c.dia == hoy }}"
+          {% if c.reservas %}title="{% for r in c.reservas %}{{ r.evento_nombre }} ({{ r.estado|estado_evento }}){{ ' · ' if not loop.last }}{% endfor %}"{% endif %}>
+        {% if c.reservas|length == 1 and (loop.first or c.reservas[0].salida == c.dia.isoformat()) %}
+          <a href="{{ url_for('eventos.detalle', evento_id=c.reservas[0].evento_id) }}" class="etq">{{ c.reservas[0].evento_nombre }}</a>
+        {% endif %}
+      </td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p class="vacio">No hay coches en la flota todavía.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Flota{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <h1>Flota</h1>
+  <a class="btn" href="{{ url_for('flota.formulario') }}">+ Añadir coche</a>
+</div>
+{% if vehiculos %}
+<table class="tabla">
+  <thead><tr><th>Coche</th><th>Matrícula</th><th>Categoría</th><th class="num">Tarifa/día</th><th class="num">Km</th><th>Estado</th><th>Próxima salida</th></tr></thead>
+  <tbody>
+  {% for v in vehiculos %}
+    <tr class="{{ 'apagado' if v.estado == 'baja' }}">
+      <td><a href="{{ url_for('flota.detalle', vehiculo_id=v.id) }}">{{ v.nombre }}</a></td>
+      <td class="mono">{{ v.matricula or '—' }}</td>
+      <td>{{ v.categoria|categoria_vehiculo }}</td>
+      <td class="num">{{ v.tarifa_dia|euros }}</td>
+      <td class="num">{{ v.km_actuales|km }}</td>
+      <td><span class="estado estado-{{ v.estado }}">{{ v.estado|estado_vehiculo }}</span></td>
+      <td>
+        {% set p = proxima[v.id] %}
+        {% if p %}{{ p.salida|fecha }} · <a href="{{ url_for('eventos.detalle', evento_id=p.evento_id) }}">{{ p.evento_nombre }}</a>{% else %}<span class="apagado">Libre</span>{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="vacio">Aún no hay coches. Empieza dando de alta tu flota.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Tarifas{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <div>
+    <h1>Tarifas y datos de empresa</h1>
+    <p class="sub">Se aplican a los presupuestos nuevos. Los ya creados no cambian.</p>
+  </div>
+</div>
+
+<form method="post" class="ajustes">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+
+  <section class="tarjeta formulario">
+    <h3 class="ancho">Transporte</h3>
+    <label>Ciudad base (desde donde salen los camiones) <input name="base_ciudad" value="{{ a.base_ciudad }}"></label>
+    <label>Coches por camión <input name="coches_por_camion" inputmode="numeric" value="{{ a.coches_por_camion }}"></label>
+    <label>Precio al cliente por km (€) <input name="transporte_precio_km" inputmode="decimal" value="{{ a.transporte_precio_km|input_num }}"></label>
+    <label>Tu coste por km (€) <input name="transporte_coste_km" inputmode="decimal" value="{{ a.transporte_coste_km|input_num }}"></label>
+  </section>
+
+  <section class="tarjeta">
+    <h3>Personal (por jornada)</h3>
+    <table class="tabla compacta">
+      <thead><tr><th>Rol</th><th>Precio al cliente (€)</th><th>Tu coste (€)</th><th class="num">Margen</th></tr></thead>
+      <tbody>
+      {% for rol, label in ROLES.items() %}
+        {% set t = tarifas[rol] %}
+        <tr>
+          <td>{{ label }}</td>
+          <td><input name="precio_{{ rol }}" inputmode="decimal" value="{{ t.precio_jornada|input_num }}" class="corto"></td>
+          <td><input name="coste_{{ rol }}" inputmode="decimal" value="{{ t.coste_jornada|input_num }}" class="corto"></td>
+          <td class="num">{{ (t.precio_jornada - t.coste_jornada)|euros }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="tarjeta formulario">
+    <h3 class="ancho">Presupuestos</h3>
+    <label>IVA (%) <input name="iva_pct" inputmode="decimal" value="{{ a.iva_pct|input_num }}"></label>
+    <label>Validez por defecto (días) <input name="validez_dias" inputmode="numeric" value="{{ a.validez_dias }}"></label>
+    <label class="ancho">Condiciones (aparecen al pie de cada propuesta)
+      <textarea name="condiciones" rows="4">{{ a.condiciones }}</textarea></label>
+  </section>
+
+  <section class="tarjeta formulario">
+    <h3 class="ancho">Datos de la empresa (cabecera de la propuesta)</h3>
+    <label>Nombre comercial <input name="empresa_nombre" value="{{ a.empresa_nombre }}"></label>
+    <label>CIF <input name="empresa_cif" value="{{ a.empresa_cif }}"></label>
+    <label>Email <input name="empresa_email" type="email" value="{{ a.empresa_email }}"></label>
+    <label>Teléfono <input name="empresa_telefono" value="{{ a.empresa_telefono }}"></label>
+    <label>Web <input name="empresa_web" value="{{ a.empresa_web }}"></label>
+  </section>
+
+  {% if distancias %}
+  <section class="tarjeta">
+    <h3>Distancias recordadas (km solo ida desde {{ a.base_ciudad }})</h3>
+    <ul class="lista-simple">
+      {% for d in distancias %}
+      <li><span>{{ d.ciudad }}</span><span>{{ d.km_ida|km }} <label class="borrar"><input type="checkbox" name="borrar_distancia" value="{{ d.ciudad }}"> olvidar</label></span></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <div class="acciones"><button type="submit" class="btn">Guardar tarifas</button></div>
+</form>
+{% endblock %}

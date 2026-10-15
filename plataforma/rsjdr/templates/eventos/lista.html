@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Eventos{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <h1>Eventos</h1>
+  <a class="btn" href="{{ url_for('eventos.formulario') }}">+ Nuevo evento</a>
+</div>
+<div class="pestanas">
+  <a href="?vista=proximos" class="{{ 'activo' if vista == 'proximos' }}">Próximos</a>
+  <a href="?vista=pasados" class="{{ 'activo' if vista == 'pasados' }}">Pasados</a>
+</div>
+{% if eventos %}
+<table class="tabla">
+  <thead><tr><th>Fechas</th><th>Evento</th><th>Cliente</th><th>Tipo</th><th>Lugar</th><th>Coches</th><th>Estado</th></tr></thead>
+  <tbody>
+  {% for e in eventos %}
+    <tr class="{{ 'apagado' if e.estado == 'cancelado' }}">
+      <td class="nowrap">{{ e.fecha_inicio|fecha }}{% if e.fecha_fin != e.fecha_inicio %} → {{ e.fecha_fin|fecha }}{% endif %}</td>
+      <td><a href="{{ url_for('eventos.detalle', evento_id=e.id) }}">{{ e.nombre }}</a></td>
+      <td>{{ e.cliente_nombre or '—' }}</td>
+      <td>{{ e.tipo|tipo_evento }}</td>
+      <td>{{ e.venue or '' }}{% if e.ciudad %}{{ ', ' if e.venue }}{{ e.ciudad }}{% endif %}</td>
+      <td>{{ e.num_coches }}</td>
+      <td><span class="estado estado-{{ e.estado }}">{{ e.estado|estado_evento }}</span></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="vacio">No hay eventos {{ 'próximos' if vista == 'proximos' else 'pasados' }}.</p>
+{% endif %}
+{% endblock %}

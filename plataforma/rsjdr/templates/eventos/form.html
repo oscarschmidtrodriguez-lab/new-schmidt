@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar evento' if evento_id else 'Nuevo evento' }}{% endblock %}
+{% block content %}
+<div class="cabecera"><h1>{{ 'Editar evento' if evento_id else 'Nuevo evento' }}</h1></div>
+{% set e = evento or {} %}
+<form method="post" class="tarjeta formulario">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <label class="ancho">Nombre del evento <input name="nombre" required value="{{ e.nombre or '' }}" placeholder="Salón del Automóvil — stand Cupra"></label>
+  <label>Cliente
+    <select name="cliente_id">
+      <option value="">— Sin cliente —</option>
+      {% for c in clientes %}
+      <option value="{{ c.id }}" {{ 'selected' if e.cliente_id == c.id }}>{{ c.nombre }}{% if c.empresa %} ({{ c.empresa }}){% endif %}</option>
+      {% endfor %}
+    </select>
+    <small><a href="{{ url_for('clientes.formulario') }}">+ nuevo cliente</a></small>
+  </label>
+  <label>Tipo
+    <select name="tipo">
+      {% for k, label in TIPO_EVENTO.items() %}
+      <option value="{{ k }}" {{ 'selected' if (e.tipo or 'feria') == k }}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Venue / recinto <input name="venue" value="{{ e.venue or '' }}" placeholder="IFEMA, pabellón 9"></label>
+  <label>Ciudad <input name="ciudad" value="{{ e.ciudad or '' }}" placeholder="Madrid"></label>
+  <label>Primer día <input type="date" name="fecha_inicio" required value="{{ e.fecha_inicio or '' }}"></label>
+  <label>Último día <input type="date" name="fecha_fin" required value="{{ e.fecha_fin or '' }}"></label>
+  <label>Estado
+    <select name="estado">
+      {% for k, label in ESTADO_EVENTO.items() %}
+      <option value="{{ k }}" {{ 'selected' if (e.estado or 'presupuesto') == k }}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label class="ancho">Notas <textarea name="notas" rows="3">{{ e.notas or '' }}</textarea></label>
+  <div class="acciones ancho">
+    <button type="submit" class="btn">Guardar</button>
+    <a href="{{ url_for('eventos.detalle', evento_id=evento_id) if evento_id else url_for('eventos.lista') }}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

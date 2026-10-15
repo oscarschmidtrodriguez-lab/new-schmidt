@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Presupuesto {{ p.numero }}{% endblock %}
+{% block content %}
+<div class="cabecera">
+  <div>
+    <h1>Presupuesto {{ p.numero }} <span class="estado estado-p-{{ p.estado }}">{{ ESTADOS[p.estado] }}</span></h1>
+    <p class="sub"><a href="{{ url_for('eventos.detalle', evento_id=evento.id) }}">{{ evento.nombre }}</a>
+      · {{ evento.fecha_inicio|fecha }}{% if evento.fecha_fin != evento.fecha_inicio %} → {{ evento.fecha_fin|fecha }}{% endif %}
+      {% if evento.cliente_nombre %} · {{ evento.cliente_nombre }}{% if evento.cliente_empresa %} ({{ evento.cliente_empresa }}){% endif %}{% endif %}</p>
+  </div>
+  <a class="btn" href="{{ url_for('presupuestos.propuesta', presupuesto_id=p.id) }}" target="_blank">Ver propuesta / PDF</a>
+</div>
+
+<form method="post" action="{{ url_for('presupuestos.cambiar_estado', presupuesto_id=p.id) }}" class="estados">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  {% for k, label in ESTADOS.items() %}
+  <button type="submit" name="estado" value="{{ k }}" class="paso {{ 'actual estado-p-' ~ k if p.estado == k }}" {{ 'disabled' if p.estado == k }}>{{ label }}</button>
+  {% endfor %}
+</form>
+
+<div class="kpis">
+  <div class="kpi"><span class="kpi-valor">{{ t.total|euros2 }}</span><span class="kpi-txt">total con IVA</span></div>
+  <div class="kpi"><span class="kpi-valor">{{ t.base|euros2 }}</span><span class="kpi-txt">base imponible</span></div>
+  <div class="kpi interno {{ 'kpi-alerta' if t.margen_pct < 30 }}"><span class="kpi-valor">{{ t.margen|euros2 }}</span><span class="kpi-txt">margen ({{ t.margen_pct|numero }} %) · solo lo ves tú</span></div>
+  <div class="kpi"><span class="kpi-valor">{{ fianzas|euros }}</span><span class="kpi-txt">fianzas de los coches (aparte)</span></div>
+</div>
+
+{% if no_cumplible %}
+<div class="msg msg-error" style="margin-top:1rem">
+  <strong>Cuidado antes de enviarlo:</strong> si el cliente acepta hoy, no podrías confirmar el evento.
+  <ul>{% for m in no_cumplible %}<li>{{ m }}</li>{% endfor %}</ul>
+  Cambia el coche en el <a href="{{ url_for('eventos.detalle', evento_id=evento.id) }}">evento</a> y genera una nueva versión, o libéralo del otro evento.
+</div>
+{% endif %}
+{% if sin_coste %}
+<p class="msg msg-aviso" style="margin-top:1rem">El margen está inflado: {{ sin_coste|length }} coche{{ 's' if sin_coste|length != 1 }} sin coste por día.
+  Ponlo en la ficha del coche (seguro, amortización, preparación) o directamente en la columna «Coste ud.».</p>
+{% endif %}
+
+<form method="post" action="{{ url_for('presupuestos.guardar', presupuesto_id=p.id) }}">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <section>
+    <h2>Líneas</h2>
+    <table class="tabla lineas">
+      <thead><tr><th>Concepto</th><th class="num">Cantidad</th><th class="num">Precio ud.</th><th class="num">Importe</th><th class="num interno-col">Coste ud.</th>{% if editable %}<th></th>{% endif %}</tr></thead>
+      <tbody>
+      {% for l in lineas %}
+        <tr>
+          {% if editable %}
+          <td><input name="concepto_{{ l.id }}" value="{{ l.concepto }}"></td>
+          <td class="num"><input name="cantidad_{{ l.id }}" value="{{ l.cantidad|input_num }}" class="corto num" inputmode="decimal"></td>
+          <td class="num"><input name="precio_{{ l.id }}" value="{{ l.precio|input_num }}" class="corto num" inputmode="decimal"></td>
+          <td class="num">{{ (l.cantidad * l.precio)|euros2 }}</td>
+          <td class="num interno-col"><input name="coste_{{ l.id }}" value="{{ l.coste|input_num }}" class="corto num" inputmode="decimal"></td>
+          <td><label class="borrar" title="Quitar línea"><input type="checkbox" name="borrar" value="{{ l.id }}"> quitar</label></td>
+          {% else %}
+          <td>{{ l.concepto }}</td>
+          <td class="num">{{ l.cantidad|numero }}</td>
+          <td class="num">{{ l.precio|euros2 }}</td>
+          <td class="num">{{ (l.cantidad * l.precio)|euros2 }}</td>
+          <td class="num interno-col">{{ l.coste|euros2 }}</td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+      {% if editable %}
+        <tr class="nueva">
+          <td><input name="nuevo_concepto" placeholder="+ Línea extra (p. ej. vinilado, seguro adicional, dietas…)"></td>
+          <td class="num"><input name="nuevo_cantidad" value="1" class="corto num" inputmode="decimal"></td>
+          <td class="num"><input name="nuevo_precio" placeholder="0" class="corto num" inputmode="decimal"></td>
+          <td></td>
+          <td class="num interno-col"><input name="nuevo_coste" placeholder="0" class="corto num" inputmode="decimal"></td>
+          <td></td>
+        </tr>
+      {% endif %}
+      </tbody>
+      <tfoot>
+        <tr><td colspan="3">Subtotal</td><td class="num">{{ t.subtotal|euros2 }}</td><td class="interno-col"></td>{% if editable %}<td></td>{% endif %}</tr>
+        <tr><td colspan="3">Descuento
+          {% if editable %}<input name="descuento_pct" value="{{ p.descuento_pct|input_num }}" class="mini num" inputmode="decimal"> %{% else %}{{ p.descuento_pct|numero }} %{% endif %}</td>
+          <td class="num">− {{ t.descuento|euros2 }}</td><td class="interno-col"></td>{% if editable %}<td></td>{% endif %}</tr>
+        <tr><td colspan="3">Base imponible</td><td class="num">{{ t.base|euros2 }}</td><td class="num interno-col">{{ t.coste|euros2 }}</td>{% if editable %}<td></td>{% endif %}</tr>
+        <tr><td colspan="3">IVA
+          {% if editable %}<input name="iva_pct" value="{{ p.iva_pct|input_num }}" class="mini num" inputmode="decimal"> %{% else %}{{ p.iva_pct|numero }} %{% endif %}</td>
+          <td class="num">{{ t.iva|euros2 }}</td><td class="interno-col"></td>{% if editable %}<td></td>{% endif %}</tr>
+        <tr class="total"><td colspan="3">Total</td><td class="num">{{ t.total|euros2 }}</td><td class="interno-col"></td>{% if editable %}<td></td>{% endif %}</tr>
+      </tfoot>
+    </table>
+    <p class="nota">La columna «Coste ud.» es interna: sirve para calcular tu margen y no aparece en la propuesta.</p>
+  </section>
+
+  <section>
+    <h2>Notas para el cliente</h2>
+    {% if editable %}
+    <textarea name="notas" rows="3" placeholder="Aparecen en la propuesta (p. ej. «Incluye conductor para traslados en el recinto»).">{{ p.notas or '' }}</textarea>
+    <div class="fila" style="margin-top:1rem">
+      <label>Validez (días) <input name="validez_dias" type="number" min="1" value="{{ p.validez_dias }}"></label>
+      <button type="submit" class="btn">Guardar cambios</button>
+    </div>
+    {% else %}
+    <p class="notas">{{ p.notas or 'Sin notas.' }}</p>
+    <p class="nota">Presupuesto aceptado: ya no se puede modificar.</p>
+    {% endif %}
+  </section>
+</form>
+
+{% if p.estado == 'borrador' %}
+<form method="post" action="{{ url_for('presupuestos.eliminar', presupuesto_id=p.id) }}" style="margin-top:2rem">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <button type="submit" class="enlace peligro">Eliminar borrador</button>
+</form>
+{% endif %}
+{% endblock %}
